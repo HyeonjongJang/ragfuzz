@@ -2,6 +2,7 @@
 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
 AFL_KILL_SIGNAL=9
 AFL_NO_UI=1
+AFL_PYTHON_MODULE=mutators.softmax_mutator
 AFL_SKIP_CPUFREQ=1
 # command line:
-'afl-fuzz' '-i' 'corpus/seeds' '-o' 'out/json_asan' '-x' 'corpus/dict/json.dict' '-m' 'none' '-t' '50' '-M' 'f0' '--' './targets/json/json_asan'
+'afl-fuzz' '-i' 'corpus/json_seeds' '-o' 'out/json_asan' '-x' 'corpus/dict/json.dict' '-m' 'none' '-t' '150' '-M' 'f0' '--' './targets/json/json_asan'

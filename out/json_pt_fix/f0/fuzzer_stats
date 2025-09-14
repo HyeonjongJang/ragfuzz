@@ -1,0 +1,51 @@
+start_time        : 1757769061
+last_update       : 1757769061
+run_time          : 0
+fuzzer_pid        : 616016
+cycles_done       : 0
+cycles_wo_finds   : 0
+time_wo_finds     : 0
+fuzz_time         : 0
+calibration_time  : 0
+cmplog_time       : 0
+sync_time         : 0
+trim_time         : 0
+execs_done        : 26
+execs_per_sec     : 26000.00
+execs_ps_last_min : 0.00
+corpus_count      : 3
+corpus_favored    : 2
+corpus_found      : 0
+corpus_imported   : 0
+corpus_variable   : 1
+max_depth         : 1
+cur_item          : 0
+pending_favs      : 2
+pending_total     : 3
+stability         : 0.00%
+bitmap_cvg        : 0.00%
+saved_crashes     : 0
+saved_hangs       : 0
+total_tmout       : 0
+last_find         : 0
+last_crash        : 0
+last_hang         : 0
+execs_since_crash : 26
+exec_timeout      : 200
+slowest_exec_ms   : 0
+peak_rss_mb       : 0
+cpu_affinity      : 11
+edges_found       : 0
+total_edges       : 6759
+var_byte_count    : 8
+havoc_expansion   : 0
+auto_dict_entries : 0
+testcache_size    : 0
+testcache_count   : 0
+testcache_evict   : 0
+afl_banner        : ./targets/json/json_asan
+afl_version       : ++4.34a
+target_mode       : persistent shmem_testcase 
+command_line      : /home/aims/AFLplusplus/afl-fuzz -i corpus/json_seeds -o out/json_pt_fix -x corpus/dict/json.dict -m none -t 200 -M f0 -V 1 -- ./targets/json/json_asan
+virgin_bytes     : 0[00] 3[fe] 11[fe] 16[fe] 17[00] 62[fe] 64[fe] 67[fe] 69[fe] 71[fe] 89[fe] 90[fe] 92[fe] 95[fe] 97[fe] 100[fe] 102[fe] 104[fe] 108[fe] 110[fe] 112[fe] 120[fe] 122[fe] 124[fe] 126[fe] 128[fe] 130[fe] 131[fe] 133[fe] 135[fe] 137[fe] 139[fe] 142[fe] 143[df] 144[df] 146[df] 148[df] 150[df] 152[fe] 153[df] 155[df] 157[df] 159[df] 161[df] 163[df] 165[df] 245[fe] 246[fe] 248[fe] 250[fe] 252[fe] 254[fe] 256[fe] 258[fe] 260[fe] 262[fe] 264[fe] 266[fe] 268[fe] 270[fe] 272[fe] 274[fe] 276[fe] 278[cf] 279[cf] 281[cf] 283[ef] 284[fb] 285[cf] 288[fe] 290[fe] 291[fe] 293[fe] 299[ef] 301[fa] 302[fd] 303[fe] 304[fe] 305[fe] 306[fe] 307[e7] 309[e7] 311[fb] 313[fb] 315[fb] 317[fb] 319[fb] 321[fb] 369[ef] 373[fb] 375[fb] 377[fb] 380[fb] 382[fb] 384[fb] 386[fb] 431[ef] 433[ef] 435[ef] 437[fb] 439[fb] 441[fb] 443[fb] 445[fb] 447[fb] 449[fb] 451[fb] 506[fb] 508[fb] 510[fb] 522[fb] 526[fb] 529[fb] 530[fb] 535[fb] 537[fb] 539[fb] 541[fb] 545[fb] 547[fb] 549[fb] 551[fb] 554[fb] 556[fb] 558[fb] 560[fb] 562[fb] 680[cf] 682[cf] 684[f3] 685[f3] 687[f3] 690[f3] 692[f3] 694[fe] 696[fe] 698[fe] 700[fe] 702[fe] 704[fe] 707[fe] 709[fe] 710[fe] 712[fe] 714[fe] 716[fe] 718[fe] 721[fb] 723[fb] 725[fb] 737[fe] 739[fe] 742[fd] 744[fd] 747[fd] 749[fd] 752[fd] 754[fd] 756[fd] 758[fd] 760[fd] 762[fd] 764[fd] 766[fd] 768[fd] 770[fd] 774[fd] 777[fd] 779[fd] 784[fd] 786[fd] 788[fe] 789[fe] 791[fe] 793[fe] 802[fe] 804[fe] 806[fe] 807[fb] 809[fb] 814[fb] 816[fb] 818[fe] 819[fd] 820[fe] 822[fe] 824[fe] 834[f5] 836[f3] 838[fb] 839[fb] 841[fb] 843[fb] 845[fb] 847[fb] 849[fb] 851[fb] 853[fb] 855[fb] 858[fb] 859[fb] 861[9f] 862[9f] 864[9f] 870[9f] 872[9f] 874[9f] 876[9f] 878[fb] 879[df] 881[df] 883[df] 885[df] 887[fe] 889[fe] 891[df] 893[df] 895[df] 897[df] 923[df] 925[df] 927[9f] 929[9f] 931[9f] 933[fe] 935[fe] 937[fe] 939[fe] 941[fe] 943[fe] 945[fe] 947[fe] 949[df] 953[df] 994[fb] 1008[fb] 1012[fb] 1015[fb] 1016[fb] 1019[fb] 1021[fb] 1023[fb] 1025[fb] 1027[fb] 1029[ef] 1031[ef] 1032[cf] 1033[fb] 1034[ef] 1071[fe] 1072[fe] 1074[fe] 1076[fe] 1078[fe] 1080[fe] 1082[fe] 1084[fe] 1086[fe] 1088[fe] 1090[fe] 1093[fe] 1095[fe] 1097[fe] 1099[fe] 1100[fe] 1102[fe] 1105[fe] 1107[fe] 1109[fe] 1111[fe] 1113[fe] 1115[fe] 1117[fe] 1119[fe] 1121[cf] 1122[cf] 1124[cf] 1126[cf] 1128[cf] 1130[cf] 1132[f3] 1133[f3] 1135[f3] 1146[df] 1147[df] 1148[df] 1150[df] 1152[df] 1154[df] 1156[df] 1200[df] 1202[df] 1204[df] 1206[df] 1208[df] 1211[df] 1213[df] 1215[df] 1217[df] 1219[df] 1221[df] 1223[df] 1225[df] 1227[df] 1231[fb] 1232[fb] 1234[fb] 1237[fb] 1239[fb] 1241[fb] 1243[fb] 1245[fb] 1247[fb] 1249[fb] 1251[fb] 1253[fb] 1255[fb] 1257[fb] 1458[9f] 1459[9f] 1537[fe] 1539[00] 1540[00] 1541[fe] 1543[fe] 1546[fe] 1548[fe] 1594[fd] 1597[fd] 1599[fd] 1608[fd] 1610[fd] 1619[fd] 1621[fd] 1974[fe] 1976[fe] 1978[fe] 1981[fe] 1982[fe] 1984[fe] 1986[fe] 1988[fe] 1990[fe] 1992[fe] 1994[fe] 1996[fe] 1998[fe] 2000[fe] 2003[fe] 2085[fb] 2088[fb] 2090[fb] 2105[fb] 2107[fb] 2109[fb] 2111[fb] 2113[fb] 2115[fb] 2117[fb] 2121[f7] 2122[fb] 2124[fb] 2126[fb] 2128[fb] 2130[fb] 2132[fb] 2378[fe] 2380[fe] 2384[fe] 2386[fe] 2389[fe] 2390[fe] 2392[fe] 2394[fe] 2396[fe] 2398[fe] 2401[fe] 2473[fb] 2475[fb] 2477[fb] 2480[fb] 2481[fb] 2483[fb] 2485[fb] 2565[f3] 2567[f3] 2569[f3] 2572[fb] 2574[fe] 2576[f6] 2578[f6] 2580[fb] 2582[fb] 2584[fb] 2586[fb] 2589[fb] 2594[fb] 2595[fe] 2597[fe] 2599[fe] 2601[fe] 5693[fe] 5695[fe] 5697[fe] 5699[fe] 5702[fe] 5703[fe] 5705[fe] 5707[fe] 5709[fe] 5714[fe] 5716[fe] 5726[fe] 5754[fe] 5755[fe] 5757[fe] 5759[fe] 5761[fe] 5763[fe] 5765[fe] 5767[fe] 5769[fe] 5771[fe] 5773[fe] 5775[fe] 5778[fe] 5780[fe] 5782[fe] 5784[fe] 5786[fe] 5788[fe] 5790[fe] 5792[fe] 5794[ef] 5796[ef] 5798[ef] 5800[fe] 5801[ef] 5803[ef] 5805[ef] 5807[ef] 5809[ef] 5811[ef] 5813[ef] 5815[ef] 5817[ef] 5819[ef] 5821[fe] 5822[fe] 5824[fe] 5826[fe] 5827[fe] 5829[fe] 5831[fe] 5833[fb] 5835[fd] 5837[fd] 5839[fd] 5841[fd] 5844[fd] 5849[fd] 5850[fe] 5851[fd] 5852[fd] 5854[fd] 5856[fd] 5858[fd] 5860[fd] 5862[fd] 5936[fd] 5938[fd] 5940[fd] 5942[fd] 5944[fd] 5946[fd] 5965[fd] 5967[fd] 5969[fd] 5971[fd] 5973[fd] 5975[fd] 5977[fd] 5979[fd] 5981[fd] 5983[fd] 5989[fd] 5991[fd] 5993[fd] 5995[fd] 5997[fd] 5999[fd] 6001[fd] 6003[fd] 6005[fd] 6006[fd] 6029[fe] 6097[fe] 6098[fe] 6100[fd] 6406[fd] 6407[fd] 6439[fd] 6440[fd] 6442[fd] 6444[fd] 6446[fd] 6448[fd] 6458[f7] 6459[f7] 6461[f7] 6463[f7] 6465[f7] 6467[f7] 6469[f7] 6471[f7] 6473[f7] 6475[f7] 6477[f7] 6479[f7] 6481[f7] 6698[f7] 6699[f7] 6701[f7] 6703[f7] 6706[f7] 6708[f7] 6710[f7] 6712[f7] 6739[00] 6744[00] 6749[00] 6754[00]
+var_bytes        : 0 17 1539 1540 6739 6744 6749 6754

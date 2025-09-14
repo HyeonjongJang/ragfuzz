@@ -1,0 +1,13 @@
+# environment variables:
+AFL_CUSTOM_MUTATOR_ONLY=1
+AFL_CUSTOM_INFO_PROGRAM=./targets/json/json_asan
+AFL_CUSTOM_INFO_PROGRAM_ARGV=
+AFL_CUSTOM_INFO_OUT=out/json_pt_fix2/f0
+AFL_DEBUG=1
+AFL_DISABLE_TRIM=1
+AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
+AFL_NO_UI=1
+AFL_PYTHON_MODULE=mutators.pass_bytes
+AFL_SKIP_CPUFREQ=1
+# command line:
+'/home/aims/AFLplusplus/afl-fuzz' '-i' 'corpus/json_seeds' '-o' 'out/json_pt_fix2' '-x' 'corpus/dict/json.dict' '-m' 'none' '-t' '200' '-M' 'f0' '-V' '1' '--' './targets/json/json_asan'
