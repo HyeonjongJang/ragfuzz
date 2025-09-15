@@ -1,0 +1,1 @@
+{"arrayOfEmpty":[{}],"objWithMixedValues":{"x":0,"y":"string","z":[null,true,false]},"complexArr":[1.2,{}],"basic":[],"anotherObj":[{"key":{"nested":0,"point":-5}},{"key":null}]}

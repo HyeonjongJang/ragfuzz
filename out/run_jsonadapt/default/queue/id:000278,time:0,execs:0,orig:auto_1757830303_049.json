@@ -1,0 +1,1 @@
+{"$schema": "http://json-schema.org/draft-07/schema#", "placement": [1, 2, 3], "layer": {"active": true, "members": ["one", "two"]}}

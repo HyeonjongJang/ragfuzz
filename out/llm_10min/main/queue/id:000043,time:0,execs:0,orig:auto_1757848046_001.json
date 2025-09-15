@@ -1,0 +1,1 @@
+{"all":[null,"","text"],"advancedObj":{"key1":"value1","key2":3,"key3":true},"advancedData":{"mixed":[1,"string",null],"emptyArr":[],"emptyObj":{}},"age":30,"anotherNested":{"deeper":{"deepest":{"deepKey":"deepValue"}}},"arrProperty":[true,false],"NULL":null}

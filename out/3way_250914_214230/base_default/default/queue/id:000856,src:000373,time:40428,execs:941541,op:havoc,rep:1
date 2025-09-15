@@ -1,0 +1,1 @@
+{"1":2,"mixedValueslues":[true,false,null,{}],"nest":[true,false,null,{}],"nestedStrings":{"level1":{"level2":{"level3":{"level4":42}}}},"choices":[[null,false,true,{}]],"examplePair":[0,[]]}

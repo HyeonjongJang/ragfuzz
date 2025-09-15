@@ -1,0 +1,1 @@
+{"$schema":null,"foo":"bar","level1":{"level2":{"level3":{"key":"value","array":[null,{"a":0},"string",false]}}},"emptyArray":[],"nullKey":null}

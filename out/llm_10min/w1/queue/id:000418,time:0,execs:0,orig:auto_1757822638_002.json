@@ -1,0 +1,1 @@
+{"result": {"level1": {"level2": {"level3": ["item1", "item2", {"nested": null}]}}}}

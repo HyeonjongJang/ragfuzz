@@ -1,0 +1,1 @@
+{"$schema":"http://json-schema.org/draft-07/schema#","1":-1,"anArray":[1,2,3],"active":true,"aNested":{"aNestedKey":"value","anotherNested":{"deepKey":3,"deepArray":[{"deepestKey":1},{"deepestKey":2}]}}}

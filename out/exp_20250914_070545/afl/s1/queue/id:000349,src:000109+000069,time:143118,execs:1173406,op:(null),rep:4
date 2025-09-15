@@ -1,0 +1,1 @@
+ {"choices":[0,"two",null,3.14,true],"nested":[{"id":1,"settings":{"enabled":false}},{"id":2,"settings":{"enabled":true},"$schema":"http://example.com/schema.json"}]

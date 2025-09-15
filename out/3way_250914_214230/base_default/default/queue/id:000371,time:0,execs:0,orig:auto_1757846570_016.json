@@ -1,0 +1,1 @@
+{"1":1,"online":true,"nestedObject":{"outer":{"inner":42},"status":"online"},"anArray":[[1,2],[3,[4,5]],{"key":"val"}],"basicCase":{"aKey":1}}

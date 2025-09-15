@@ -1,0 +1,1 @@
+{"4": "QWERTY", "anotherObj": {"key": "value"}, "also": [{}, []], "anEmptyString": "", "mixedTypes": ["str", 1, true, {"object": "inside"}]}

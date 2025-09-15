@@ -1,0 +1,8 @@
+# environment variables:
+AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
+AFL_KILL_SIGNAL=9
+AFL_NO_AFFINITY=1
+AFL_PYTHON_MODULE=mutators.json_adapt
+AFL_SKIP_CPUFREQ=1
+# command line:
+'afl-fuzz' '-i' '-' '-o' 'out/llm_10min' '-x' 'corpus/dict/combined.dict.clean' '-m' 'none' '-t' '200' '-V' '600' '-S' 'w2' '--' './targets/json/json_asan'

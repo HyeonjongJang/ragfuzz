@@ -1,0 +1,1 @@
+ {"all":[1,0,-1,1.414,"string",{"nested":[{"id":1},{"id":-1}]}],"nonEmptyArr":[{"value":0},{"name":"Item1","value":2147483647},{"name":"Item2","value":-1},{"name":null,"value":2147483647},{"value":2147483648,"nested":{"level1":{"level2":{"level3":1}}}},{"name":"A","value":1},{"name":"B","value":2},{"items":[]}],"parentNull":null,"negInf":-Infinity

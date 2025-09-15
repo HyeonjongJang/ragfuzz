@@ -1,0 +1,1 @@
+{"$schema": "http://json-schema.org/draft-07/schema#", "strings": ["normal", "string"], "complex": {"level1": {"level2": {"level3": {"level4": "deep"}}}} }

@@ -1,0 +1,1 @@
+{"$schema":"http://json-schema.org/draft-04/schema#","id":1,"name":"test","zeroField":0,"mixedMix":[true,null,3.14]}

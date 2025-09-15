@@ -1,0 +1,1 @@
+{"flatArray":[null,"value",32768],"regexMix":[{"pattern":"\\d+","type":"integer"}],"deeperNested":{"control":1.23,"list":[false,{"deep":{"key":1}}]}}

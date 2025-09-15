@@ -1,0 +1,1 @@
+{"$schema":"https://example.com/schema.json","mixedRequired":true,"arrOfNums":[1,2,3,4],"evenMoreComplex":{"field1":[{"innerField":true},{"innerField":false}],"subArray":[0,{"anotherSubField":"msg"}]},"nestedLevels":{"one":{"two":{"three":[1,2,3]}}},"basicArr":[],"embeddedArrays":[[1],[],[2,0],[3,4],"ste"]}

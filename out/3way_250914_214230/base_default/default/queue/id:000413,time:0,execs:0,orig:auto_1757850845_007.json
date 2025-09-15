@@ -1,0 +1,1 @@
+{"arrOfMixed": [1, "", false, null, {"deep": {"one": 1, "two": [1, 1.5]}}], "a": [0, {}, []], "5": true}

@@ -1,0 +1,1 @@
+{"baz":100,"boo":true,"numberArray":[0,1,2,2147483647],"array":[{"nested":{"key":"value"}},{"empty":{}},{"id":0,"type":"nested"},{"id":1,"type":"deeplyNested","children":[{"id":2,"value":"moreComplex","subItems":[{"key":"value1"},{"key":"value2"}]}]}],"deep":{"thing":null}}

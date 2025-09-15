@@ -1,0 +1,1 @@
+{"$schema":"http://json-schema.org/draft-04/schema#","name":"test","value":1,"levels":[{"id":0,"type":"nested"},{"id":1,"type":"deeplyNested","children":[{"id":2,"value":"moreComplex","subItems":[{"key":"value1"},{"key":"value2"}]}]}],"$schema":"http://example.com/schema.json"}

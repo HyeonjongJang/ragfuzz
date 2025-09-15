@@ -1,0 +1,1 @@
+{"$schema": "http://json-schema.org/draft-07/schema#", "deepData": {"list": [true, false, 3, 4], "link": "http://example.com", "nested": {}} }

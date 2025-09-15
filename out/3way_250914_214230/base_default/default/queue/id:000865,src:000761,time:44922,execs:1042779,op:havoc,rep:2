@@ -1,0 +1,1 @@
+{"$schema":"httpschema.org/draft-07/schema#","1":-1,"2":0,"3":1,"4":47,"5":2147483648,"active":true,"arr":[1,"st",null],"nested":{"a":2,"b":{"c":[3.5,{"d":null}]},"deep":{"e":{"f":[{"g":"text"}]}}},"anotherObj":{"anotherJey":"value","arrOfNums":[-2,0,1.5,214.4836471,2,3,4,5,{"nesterrOfNums":[-2,0,1.5,214.483dKey":"nestedValue"}]}

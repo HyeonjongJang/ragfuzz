@@ -1,0 +1,1 @@
+{"$schema": "httjson-schema.org/draft-07/schema#", "fleet": [{"name": "vehicle1", "type": "car"}, {"name": null, "type": "bike"}], "config": {} }

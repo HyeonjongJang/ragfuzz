@@ -1,0 +1,1 @@
+{"$schema":"httpschema.org/draft-07/schema#","a":1,"b":0,"c":-1,"deep":{"deeperLevel":{"depth3":{"depth4":{"depth5":{"inner":{"foo":"bar"}}}}}}}

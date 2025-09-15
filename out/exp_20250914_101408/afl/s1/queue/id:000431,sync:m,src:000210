@@ -1,0 +1,1 @@
+{"foo": {"$schema":"http://json-schema.org/draft-07/schema#","1":31,"anArray":[1,2,3],"active":true,"aNested":{"aNestedKey":"value","anotherNested":{"deepKey":3,"deepArray":[{"deepestKey":1},{"deepe`tKey

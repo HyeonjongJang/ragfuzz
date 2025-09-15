@@ -1,0 +1,1 @@
+{"$schema":null,"basicArr":["one","two","three"],"nested":{"depth1":{"depth2":{"depth3":[1,2,3,4,5],"emptyObj":{}}},"key":"value"},"are":["elements","in","an","array"],"anotherNestedPlug":{"types":[true,"some string",{}],"mixed":[1,"another",{"obj":null}]},"advancedData":{"key1":0,"key2":"value"}}

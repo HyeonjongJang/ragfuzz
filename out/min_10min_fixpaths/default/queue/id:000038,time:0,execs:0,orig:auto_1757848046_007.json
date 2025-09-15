@@ -1,0 +1,1 @@
+{"$schema":"http://json-schema.org/draft-07/schema#","anotherName":"example","nested":{"firstKey":-2147483648,"secondKey":2147483648},"nullValue":null,"active":true}

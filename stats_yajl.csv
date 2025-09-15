@@ -1,0 +1,2 @@
+edges_found,execs_done,execs_per_sec,fuzzer_dir,paths_total,plot_cur_path,plot_cycles_done,plot_edges_found,plot_execs_per_sec,plot_paths_total,plot_total_execs,plot_unix_time,unique_crashes,unique_hangs
+6,18271,11433.67,out/yajl_inst/default,, 1, 0, 6, 11354.76, 12, 18271,1,,

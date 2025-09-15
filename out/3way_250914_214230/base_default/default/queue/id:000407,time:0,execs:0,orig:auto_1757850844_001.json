@@ -1,0 +1,1 @@
+{"$schema": "htt-schema.org/draft-07/schema#", "age": 30, "advanced": {"advancedData": {"_id": "73", "anotherNull": null, "mixed": ["string", 10, true, {"key": "value"}]}}, "arrOfNums": [0, 2147483647, -1]}

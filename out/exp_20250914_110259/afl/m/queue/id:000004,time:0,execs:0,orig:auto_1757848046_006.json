@@ -1,0 +1,1 @@
+{"another":true,"deepArray":[[1,2],[3,{"deepestKey":"value"}]],"uuid":"9c0d34eb-e94e-4817-8add-a93429f10e59","arrValues":[1,2,3,4],"anEmptyString":"","falsyArray":[0,false,null],"attributes":{"list":[1,"two",3.0]}}

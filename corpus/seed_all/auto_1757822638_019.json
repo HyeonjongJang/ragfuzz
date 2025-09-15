@@ -1,0 +1,1 @@
+{"coo": "balk", "foo": true, "nested": {"level1": {"nonEmptyItem": ["one", "two"], "nullValue": null}}}

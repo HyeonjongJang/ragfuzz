@@ -1,0 +1,1 @@
+{"anotherEmptyString":"","age":-5,"mixedTypes":[true,"123",1.5,null,null,false],"base":{"object":{"key":1,"nestedObject":{"anotherKey":4},"emptyArray":[],"emptyString":""}},"aDeeplyNested":{"levelOne":{"levelTwo":[{"insideArrayPoint":1,"pointString":"text"}]}}}

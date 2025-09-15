@@ -1,0 +1,8 @@
+cpe:2.3:a:jansson_project:jansson:*:*:*:*:*:*:*:* 
+cpe:2.3:a:jq_project:jq:*:*:*:*:*:*:*:* 
+cpe:2.3:a:jqlang:jq:*:*:*:*:*:*:*:* 
+cpe:2.3:a:json-c:json-c:*:*:*:*:*:*:*:* 
+cpe:2.3:a:json-c_project:json-c:*:*:*:*:*:*:*:* 
+cpe:2.3:a:simdjson_project:simdjson:*:*:*:*:*:*:*:* 
+cpe:2.3:a:tencent:rapidjson:*:*:*:*:*:*:*:* 
+cpe:2.3:a:yajl_project:yajl:*:*:*:*:*:*:*:* 

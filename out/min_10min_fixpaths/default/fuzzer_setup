@@ -1,0 +1,7 @@
+# environment variables:
+AFL_DISABLE_TRIM=1
+AFL_KILL_SIGNAL=9
+AFL_NO_AFFINITY=1
+AFL_PYTHON_MODULE=mutators.min_adapt
+# command line:
+'afl-fuzz' '-i' 'corpus/seed_all' '-o' 'out/min_10min_fixpaths' '-x' 'corpus/dict/combined.dict.clean' '-m' 'none' '-t' '200' '-V' '120' '--' './targets/json/json_asan'

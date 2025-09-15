@@ -1,0 +1,1 @@
+{"advancedData":{"booleanField":false,"integerField":2147483647,"floatField":3.4028235e38,"base64":"SGVsbG8gd29ybGQ=","nested":{"level1":{"level2":{"Data":{"booleanField":false,"integerField":2147483647,"floatField":3.4028235e38,"base64":"SGVsbG8gd29ybGQ=","nested":{"level1":{"level2":{"value":0}}},"anotherEmpty":[]},"arrayOfEvalue":0}}},"anotherEmpty":[]},"arrayOfEmpty":[]}

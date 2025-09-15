@@ -1,0 +1,1 @@
+{"$schema": "http://json-schema.org/draft-07/schema#", "anotherObj": {"name": "container", "values": [1, 2, 3], "deeply": {"term": "nested"} } }

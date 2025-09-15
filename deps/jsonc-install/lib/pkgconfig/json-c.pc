@@ -1,0 +1,12 @@
+prefix=/home/aims/ragfuzz/deps/jsonc-install
+exec_prefix=/home/aims/ragfuzz/deps/jsonc-install
+libdir=/home/aims/ragfuzz/deps/jsonc-install/lib
+includedir=/home/aims/ragfuzz/deps/jsonc-install/include
+
+Name: json-c
+Description: A JSON implementation in C
+Version: 0.18.99
+Requires:
+Libs.private: -lm
+Libs: -L${libdir} -ljson-c
+Cflags: -I${includedir} -I${includedir}/json-c

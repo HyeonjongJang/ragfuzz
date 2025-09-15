@@ -1,0 +1,1 @@
+{"items":[{"name":"Item1","value":0},{"name":"Item2","value":-1},{"name":null,"value":2147483647},{"value":2147483648,"nested":{"level1":{"level2":{"level3":1}}}},{"name":"A","value":1},{"name":"B","value":2},{"items":[]}]}

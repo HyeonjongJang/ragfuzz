@@ -1,0 +1,1 @@
+{"settings": {"$schema":"http://json-schema.org/draft-07/schema#","1":-1,"2":0,"3":1,"-2147483648":2147483647,"5":2147483648,"active":true,"arr":[1,"string",null],"nested":{"a":2,"b":{"c":[3.5,{"d":null}]},"deep":{"e":{"f":[{"g":"text"}]}}},"anotherObj":{"anotherKey":"value","arrOfNums":[-2,0,1.5,2147483647]},"anArray":[1,2,3,4,5,{"nestedKey":"ne

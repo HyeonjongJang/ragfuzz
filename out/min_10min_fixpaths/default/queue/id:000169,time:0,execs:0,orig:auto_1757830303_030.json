@@ -1,0 +1,1 @@
+{"$schema": "http://json-schema.org/draft-07/schema#", "mixedTypes": [true, false, null, "string", 42], "name": "testing" }

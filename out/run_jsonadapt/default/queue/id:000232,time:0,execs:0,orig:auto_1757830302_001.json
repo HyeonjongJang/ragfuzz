@@ -1,0 +1,1 @@
+{"$schema": "http://json-schema.org/draft-07/schema#", "count": 0, "anotherObj": {"deepNested": {"depth1": {"depth2": {"depth3": -1 }}}} }

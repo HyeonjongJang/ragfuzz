@@ -1,0 +1,1 @@
+{"1.5":2,"additional":[{"arr":[]},{"obj":{}}],"nullArray":[null,1],"nested":{"arr":[1,2,3],"anotherNull":null},"values":{"dept":null,"nestedData":[1,{"subKey":2}]},"deeplyNested":{"field1":{"field2":{"field3":[{"key":"value"}]}}}}

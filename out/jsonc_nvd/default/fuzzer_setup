@@ -1,0 +1,5 @@
+# environment variables:
+AFL_KILL_SIGNAL=9
+AFL_PYTHON_MODULE=mutators.json_adapt
+# command line:
+'afl-fuzz' '-i' 'corpus/min' '-o' 'out/jsonc_nvd' '-x' 'corpus/dict/combined.dict' '-m' 'none' '-t' '200' '--' './targets/json/jsonc_asan'

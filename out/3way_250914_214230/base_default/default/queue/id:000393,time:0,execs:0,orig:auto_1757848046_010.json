@@ -1,0 +1,1 @@
+{"anotherObj":{"mixed":[1,"string",false,2.5,null,{}]},"1":1,"arrayCash":[{"text":"value","num":2}],"aDeeplyNested":{"aKey":{"nestedKey":0},"anotherNestedObject":{"key1":null, "key2":"value2"}}}

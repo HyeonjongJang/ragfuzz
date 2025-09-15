@@ -1,0 +1,671 @@
+[1;92m[+] [0mLoaded environment variable AFL_SKIP_CPUFREQ with value 1[0m
+[1;92m[+] [0mLoaded environment variable AFL_NO_AFFINITY with value 1[0m
+[1;92m[+] [0mLoaded environment variable AFL_PYTHON_MODULE with value mutators.json_adapt[0m
+[0;36mafl-fuzz++4.00c[0m based on afl by Michal Zalewski and a large online community
+[1;92m[+] [0mafl++ is maintained by Marc "van Hauser" Heuse, Heiko "hexcoder" Eißfeldt, Andrea Fioraldi and Dominik Maier[0m
+[1;92m[+] [0mafl++ is open source, get it at https://github.com/AFLplusplus/AFLplusplus[0m
+[1;92m[+] [0mNOTE: This is v3.x which changes defaults and behaviours - see README.md[0m
+[1;94m[*] [0mGetting to work...[0m
+[1;92m[+] [0mUsing exponential power schedule (FAST)[0m
+[1;92m[+] [0mEnabled testcache with 50 MB[0m
+[1;94m[*] [0mChecking core_pattern...[0m
+[1;92m[+] [0mLooks like we're not running on a tty, so I'll be a bit less verbose.[0m
+[1;92m[+] [0mYou have 16 CPU cores and 3 runnable tasks (utilization: 19%).[0m
+[1;92m[+] [0mTry parallel jobs - see docs/parallel_fuzzing.md.[0m
+[1;94m[*] [0mSetting up output directories...[0m
+[1;93m[!] [1;97mWARNING: [0mNot binding to a CPU core (AFL_NO_AFFINITY set).[0m
+[1;94m[*] [0mLoading Python mutator library from 'mutators.json_adapt'...[0m
+[1;93m[!] [1;97mWARNING: [0mPython module does not implement trim API, standard trimming will be used.[0m
+[1;92m[+] [0mPython mutator 'mutators.json_adapt' installed successfully.[0m
+[1;94m[*] [0mScanning 'corpus/min'...[0m
+[1;92m[+] [0mLoaded a total of 65 seeds.[0m
+[1;94m[*] [0mCreating hard links for all input files...[0m
+[1;94m[*] [0mValidating target binary...[0m
+[1;92m[+] [0m[1;95mPersistent mode binary detected.[0m
+[1;92m[+] [0m[1;95mDeferred forkserver binary detected.[0m
+[1;94m[*] [0mSpinning up the fork server...[0m
+[1;92m[+] [0mAll right - fork server is up.[0m
+[1;94m[*] [0mTarget map size: 7523[0m
+[1;94m[*] [0mNo auto-generated dictionary tokens to reuse.[0m
+[1;94m[*] [0mLoading extra dictionary from 'corpus/dict/combined.dict' (level 0)...[0m
+[1;93m[!] [1;97mWARNING: [0mEmpty keyword in line 423.[0m
+[1;94m[*] [0mLoaded 433 extra tokens, size range 1 B to 24 B.[0m
+[1;93m[!] [1;97mWARNING: [0mMore than 256 tokens - will use them probabilistically.[0m
+[1;92m[+] [0mLoaded a total of 432 extras.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000000,time:0,execs:0,orig:seed_001.json'...[0m
+[1;93m[!] [1;97mWARNING: [0minstability detected during calibration[0m
+[1;90m    len = 25, map size = 769, exec speed = 302 us
+[0m[1;93m[!] [1;97mWARNING: [0mInstrumentation output varies across runs.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000001,time:0,execs:0,orig:min.json'...[0m
+[1;90m    len = 25, map size = 646, exec speed = 211 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000002,time:0,execs:0,orig:auto_1757848046_022.json'...[0m
+[1;90m    len = 114, map size = 1169, exec speed = 265 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000003,time:0,execs:0,orig:auto_1757848046_010.json'...[0m
+[1;90m    len = 194, map size = 1290, exec speed = 347 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000004,time:0,execs:0,orig:auto_1757848046_006.json'...[0m
+[1;90m    len = 214, map size = 1311, exec speed = 312 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000005,time:0,execs:0,orig:auto_1757848046_005.json'...[0m
+[1;90m    len = 193, map size = 1232, exec speed = 324 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000006,time:0,execs:0,orig:auto_1757848046_002.json'...[0m
+[1;90m    len = 231, map size = 1209, exec speed = 325 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000007,time:0,execs:0,orig:auto_1757848046_001.json'...[0m
+[1;90m    len = 259, map size = 1269, exec speed = 347 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000008,time:0,execs:0,orig:auto_1757848046_000.json'...[0m
+[1;90m    len = 338, map size = 1289, exec speed = 418 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000009,time:0,execs:0,orig:auto_1757846570_031.json'...[0m
+[1;90m    len = 121, map size = 1110, exec speed = 306 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000010,time:0,execs:0,orig:auto_1757846570_029.json'...[0m
+[1;90m    len = 84, map size = 1009, exec speed = 289 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000011,time:0,execs:0,orig:auto_1757846570_018.json'...[0m
+[1;90m    len = 159, map size = 1155, exec speed = 329 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000012,time:0,execs:0,orig:auto_1757846570_013.json'...[0m
+[1;90m    len = 261, map size = 1331, exec speed = 381 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000013,time:0,execs:0,orig:auto_1757846570_007.json'...[0m
+[1;90m    len = 174, map size = 1229, exec speed = 305 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000014,time:0,execs:0,orig:auto_1757846570_006.json'...[0m
+[1;90m    len = 316, map size = 1194, exec speed = 284 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000015,time:0,execs:0,orig:auto_1757846570_001.json'...[0m
+[1;90m    len = 374, map size = 1316, exec speed = 274 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000016,time:0,execs:0,orig:auto_1757846570_000.json'...[0m
+[1;90m    len = 560, map size = 1329, exec speed = 510 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000017,time:0,execs:0,orig:auto_1757845118_003.json'...[0m
+[1;90m    len = 144, map size = 1253, exec speed = 291 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000018,time:0,execs:0,orig:auto_1757845118_000.json'...[0m
+[1;90m    len = 203, map size = 1137, exec speed = 320 us
+[0m[1;93m[!] [1;97mWARNING: [0mNo new instrumentation output, test case may be useless.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000019,time:0,execs:0,orig:auto_1757833827_050.json'...[0m
+[1;90m    len = 107, map size = 1201, exec speed = 327 us
+[0m[1;93m[!] [1;97mWARNING: [0mNo new instrumentation output, test case may be useless.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000020,time:0,execs:0,orig:auto_1757833827_045.json'...[0m
+[1;90m    len = 113, map size = 1159, exec speed = 277 us
+[0m[1;93m[!] [1;97mWARNING: [0mNo new instrumentation output, test case may be useless.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000021,time:0,execs:0,orig:auto_1757833827_042.json'...[0m
+[1;90m    len = 90, map size = 987, exec speed = 243 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000022,time:0,execs:0,orig:auto_1757833827_025.json'...[0m
+[1;90m    len = 149, map size = 1281, exec speed = 270 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000023,time:0,execs:0,orig:auto_1757833827_021.json'...[0m
+[1;90m    len = 80, map size = 1190, exec speed = 225 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000024,time:0,execs:0,orig:auto_1757833827_008.json'...[0m
+[1;90m    len = 120, map size = 1094, exec speed = 244 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000025,time:0,execs:0,orig:auto_1757833826_007.json'...[0m
+[1;90m    len = 198, map size = 1108, exec speed = 277 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000026,time:0,execs:0,orig:auto_1757833826_004.json'...[0m
+[1;90m    len = 114, map size = 1034, exec speed = 242 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000027,time:0,execs:0,orig:auto_1757830303_050.json'...[0m
+[1;90m    len = 127, map size = 995, exec speed = 205 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000028,time:0,execs:0,orig:auto_1757830303_039.json'...[0m
+[1;90m    len = 117, map size = 1107, exec speed = 241 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000029,time:0,execs:0,orig:auto_1757830303_029.json'...[0m
+[1;90m    len = 124, map size = 1070, exec speed = 249 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000030,time:0,execs:0,orig:auto_1757830302_009.json'...[0m
+[1;90m    len = 149, map size = 816, exec speed = 260 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000031,time:0,execs:0,orig:auto_1757829149_033.json'...[0m
+[1;90m    len = 97, map size = 1101, exec speed = 247 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000032,time:0,execs:0,orig:auto_1757829149_020.json'...[0m
+[1;90m    len = 113, map size = 1055, exec speed = 253 us
+[0m[1;93m[!] [1;97mWARNING: [0mNo new instrumentation output, test case may be useless.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000033,time:0,execs:0,orig:auto_1757829149_019.json'...[0m
+[1;90m    len = 86, map size = 1018, exec speed = 226 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000034,time:0,execs:0,orig:auto_1757829149_008.json'...[0m
+[1;90m    len = 90, map size = 1114, exec speed = 252 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000035,time:0,execs:0,orig:auto_1757829149_007.json'...[0m
+[1;90m    len = 101, map size = 1072, exec speed = 245 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000036,time:0,execs:0,orig:auto_1757829149_006.json'...[0m
+[1;90m    len = 127, map size = 1176, exec speed = 295 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000037,time:0,execs:0,orig:auto_1757829149_005.json'...[0m
+[1;90m    len = 80, map size = 1084, exec speed = 256 us
+[0m[1;93m[!] [1;97mWARNING: [0mNo new instrumentation output, test case may be useless.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000038,time:0,execs:0,orig:auto_1757829149_004.json'...[0m
+[1;90m    len = 138, map size = 1031, exec speed = 254 us
+[0m[1;93m[!] [1;97mWARNING: [0mNo new instrumentation output, test case may be useless.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000039,time:0,execs:0,orig:auto_1757822779_059.json'...[0m
+[1;90m    len = 41, map size = 1097, exec speed = 253 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000040,time:0,execs:0,orig:auto_1757822779_056.json'...[0m
+[1;90m    len = 54, map size = 1050, exec speed = 234 us
+[0m[1;93m[!] [1;97mWARNING: [0mNo new instrumentation output, test case may be useless.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000041,time:0,execs:0,orig:auto_1757822779_055.json'...[0m
+[1;90m    len = 43, map size = 869, exec speed = 238 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000042,time:0,execs:0,orig:auto_1757822779_054.json'...[0m
+[1;90m    len = 26, map size = 563, exec speed = 209 us
+[0m[1;93m[!] [1;97mWARNING: [0mNo new instrumentation output, test case may be useless.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000043,time:0,execs:0,orig:auto_1757822779_035.json'...[0m
+[1;90m    len = 31, map size = 736, exec speed = 225 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000044,time:0,execs:0,orig:auto_1757822779_019.json'...[0m
+[1;90m    len = 93, map size = 826, exec speed = 272 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000045,time:0,execs:0,orig:auto_1757822779_016.json'...[0m
+[1;90m    len = 80, map size = 1077, exec speed = 243 us
+[0m[1;93m[!] [1;97mWARNING: [0mNo new instrumentation output, test case may be useless.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000046,time:0,execs:0,orig:auto_1757822779_000.json'...[0m
+[1;90m    len = 31, map size = 805, exec speed = 235 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000047,time:0,execs:0,orig:auto_1757822753_068.json'...[0m
+[1;90m    len = 22, map size = 823, exec speed = 236 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000048,time:0,execs:0,orig:auto_1757822753_067.json'...[0m
+[1;90m    len = 30, map size = 985, exec speed = 233 us
+[0m[1;93m[!] [1;97mWARNING: [0mNo new instrumentation output, test case may be useless.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000049,time:0,execs:0,orig:auto_1757822753_057.json'...[0m
+[1;90m    len = 27, map size = 736, exec speed = 188 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000050,time:0,execs:0,orig:auto_1757822752_054.json'...[0m
+[1;90m    len = 113, map size = 1009, exec speed = 235 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000051,time:0,execs:0,orig:auto_1757822752_051.json'...[0m
+[1;90m    len = 71, map size = 703, exec speed = 244 us
+[0m[1;93m[!] [1;97mWARNING: [0mNo new instrumentation output, test case may be useless.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000052,time:0,execs:0,orig:auto_1757822752_048.json'...[0m
+[1;90m    len = 13, map size = 616, exec speed = 196 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000053,time:0,execs:0,orig:auto_1757822752_043.json'...[0m
+[1;90m    len = 18, map size = 620, exec speed = 207 us
+[0m[1;93m[!] [1;97mWARNING: [0mNo new instrumentation output, test case may be useless.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000054,time:0,execs:0,orig:auto_1757822752_036.json'...[0m
+[1;90m    len = 14, map size = 660, exec speed = 218 us
+[0m[1;93m[!] [1;97mWARNING: [0mNo new instrumentation output, test case may be useless.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000055,time:0,execs:0,orig:auto_1757822752_031.json'...[0m
+[1;90m    len = 18, map size = 662, exec speed = 218 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000056,time:0,execs:0,orig:auto_1757822752_024.json'...[0m
+[1;90m    len = 40, map size = 929, exec speed = 225 us
+[0m[1;93m[!] [1;97mWARNING: [0mNo new instrumentation output, test case may be useless.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000057,time:0,execs:0,orig:auto_1757822752_019.json'...[0m
+[1;90m    len = 16, map size = 563, exec speed = 205 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000058,time:0,execs:0,orig:auto_1757822752_006.json'...[0m
+[1;90m    len = 15, map size = 603, exec speed = 210 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000059,time:0,execs:0,orig:auto_1757822638_052.json'...[0m
+[1;90m    len = 79, map size = 1168, exec speed = 243 us
+[0m[1;93m[!] [1;97mWARNING: [0mNo new instrumentation output, test case may be useless.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000060,time:0,execs:0,orig:auto_1757822638_049.json'...[0m
+[1;90m    len = 62, map size = 781, exec speed = 243 us
+[0m[1;93m[!] [1;97mWARNING: [0mNo new instrumentation output, test case may be useless.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000061,time:0,execs:0,orig:auto_1757822638_039.json'...[0m
+[1;90m    len = 57, map size = 1006, exec speed = 235 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000062,time:0,execs:0,orig:auto_1757822638_036.json'...[0m
+[1;90m    len = 47, map size = 846, exec speed = 226 us
+[0m[1;93m[!] [1;97mWARNING: [0mNo new instrumentation output, test case may be useless.[0m
+[1;94m[*] [0mAttempting dry run with 'id:000063,time:0,execs:0,orig:auto_1757822638_005.json'...[0m
+[1;90m    len = 101, map size = 640, exec speed = 211 us
+[0m[1;94m[*] [0mAttempting dry run with 'id:000064,time:0,execs:0,orig:auto_1757775524_000.json'...[0m
+[1;90m    len = 223, map size = 1102, exec speed = 369 us
+[0m[1;92m[+] [0mAll test cases processed.[0m
+[1;93m[!] [1;97mWARNING: [0m[1;91mSome test cases look useless. Consider using a smaller set.[0m
+[1;93m[!] [1;97mWARNING: [0mYou have lots of input files; try starting small.[0m
+[1;92m[+] [0mHere are some useful stats:
+
+[1;90m    Test case count : [0m19 favored, 1 variable, 0 ignored, 65 total
+[1;90m       Bitmap range : [0m563 to 1331 bits (average: 1006.38 bits)
+[1;90m        Exec timing : [0m188 to 510 us (average: 267 us)
+[0m
+[1;94m[*] [0m-t option specified. We'll use an exec timeout of 200 ms.[0m
+[1;92m[+] [0mAll set and ready to roll![0m
+[1;94m[*] [0mEntering queue cycle 1.[0m
+[1;94m[*] [0mFuzzing test case #0 (65 total, 0 crashes saved, perf_score=0, exec_us=302, hits=0, map=769, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #1 (193 total, 0 crashes saved, perf_score=0, exec_us=211, hits=0, map=646, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #23 (194 total, 0 crashes saved, perf_score=0, exec_us=225, hits=0, map=1190, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #28 (197 total, 0 crashes saved, perf_score=0, exec_us=241, hits=0, map=1107, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #44 (206 total, 0 crashes saved, perf_score=0, exec_us=272, hits=0, map=826, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #48 (213 total, 0 crashes saved, perf_score=0, exec_us=233, hits=0, map=985, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #49 (214 total, 0 crashes saved, perf_score=0, exec_us=188, hits=0, map=736, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #52 (215 total, 0 crashes saved, perf_score=0, exec_us=196, hits=0, map=616, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #55 (215 total, 0 crashes saved, perf_score=0, exec_us=218, hits=0, map=662, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #57 (215 total, 0 crashes saved, perf_score=0, exec_us=205, hits=0, map=563, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #59 (221 total, 0 crashes saved, perf_score=0, exec_us=243, hits=0, map=1168, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #62 (221 total, 0 crashes saved, perf_score=0, exec_us=226, hits=0, map=846, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #65 (222 total, 0 crashes saved, perf_score=0, exec_us=195, hits=192, map=874, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #67 (224 total, 0 crashes saved, perf_score=0, exec_us=219, hits=295, map=900, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #68 (225 total, 0 crashes saved, perf_score=0, exec_us=202, hits=224, map=870, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #73 (228 total, 0 crashes saved, perf_score=0, exec_us=182, hits=562, map=264, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #77 (228 total, 0 crashes saved, perf_score=0, exec_us=177, hits=217, map=210, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #81 (228 total, 0 crashes saved, perf_score=0, exec_us=185, hits=123, map=273, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #82 (228 total, 0 crashes saved, perf_score=0, exec_us=192, hits=1, map=310, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #84 (228 total, 0 crashes saved, perf_score=0, exec_us=202, hits=19, map=221, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #86 (228 total, 0 crashes saved, perf_score=0, exec_us=178, hits=11, map=547, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #87 (228 total, 0 crashes saved, perf_score=0, exec_us=206, hits=5, map=665, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #88 (234 total, 0 crashes saved, perf_score=0, exec_us=166, hits=46, map=157, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #89 (234 total, 0 crashes saved, perf_score=0, exec_us=185, hits=270, map=272, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #90 (234 total, 0 crashes saved, perf_score=0, exec_us=179, hits=2, map=329, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #91 (235 total, 0 crashes saved, perf_score=0, exec_us=182, hits=1, map=362, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #92 (235 total, 0 crashes saved, perf_score=0, exec_us=179, hits=9, map=221, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #95 (235 total, 0 crashes saved, perf_score=0, exec_us=186, hits=262, map=169, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #96 (235 total, 0 crashes saved, perf_score=0, exec_us=196, hits=2, map=802, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #98 (235 total, 0 crashes saved, perf_score=0, exec_us=198, hits=9, map=380, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #99 (235 total, 0 crashes saved, perf_score=0, exec_us=171, hits=38, map=199, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #103 (235 total, 0 crashes saved, perf_score=0, exec_us=190, hits=1, map=658, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #104 (235 total, 0 crashes saved, perf_score=0, exec_us=184, hits=36, map=241, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #106 (235 total, 0 crashes saved, perf_score=0, exec_us=194, hits=1, map=201, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #108 (236 total, 0 crashes saved, perf_score=0, exec_us=194, hits=4, map=605, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #109 (236 total, 0 crashes saved, perf_score=0, exec_us=193, hits=61, map=386, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #110 (236 total, 0 crashes saved, perf_score=0, exec_us=197, hits=1, map=349, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #111 (237 total, 0 crashes saved, perf_score=0, exec_us=185, hits=322, map=245, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #113 (242 total, 0 crashes saved, perf_score=0, exec_us=194, hits=54, map=201, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #115 (242 total, 0 crashes saved, perf_score=0, exec_us=185, hits=9, map=267, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #118 (243 total, 0 crashes saved, perf_score=0, exec_us=173, hits=9, map=198, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #119 (243 total, 0 crashes saved, perf_score=0, exec_us=177, hits=298, map=222, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #120 (243 total, 0 crashes saved, perf_score=0, exec_us=183, hits=10, map=132, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #122 (243 total, 0 crashes saved, perf_score=0, exec_us=165, hits=3, map=134, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #127 (243 total, 0 crashes saved, perf_score=0, exec_us=185, hits=1, map=689, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #128 (244 total, 0 crashes saved, perf_score=0, exec_us=170, hits=12, map=169, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #130 (244 total, 0 crashes saved, perf_score=0, exec_us=190, hits=1, map=300, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #132 (244 total, 0 crashes saved, perf_score=0, exec_us=194, hits=20, map=221, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #135 (244 total, 0 crashes saved, perf_score=0, exec_us=178, hits=2, map=355, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #138 (245 total, 0 crashes saved, perf_score=0, exec_us=190, hits=2, map=225, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #141 (246 total, 0 crashes saved, perf_score=0, exec_us=174, hits=4, map=134, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #146 (246 total, 0 crashes saved, perf_score=0, exec_us=233, hits=64, map=330, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #151 (246 total, 0 crashes saved, perf_score=0, exec_us=231, hits=101, map=205, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #157 (248 total, 0 crashes saved, perf_score=0, exec_us=197, hits=2, map=766, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #165 (248 total, 0 crashes saved, perf_score=0, exec_us=184, hits=2, map=312, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #166 (248 total, 0 crashes saved, perf_score=0, exec_us=186, hits=1, map=337, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #167 (249 total, 0 crashes saved, perf_score=0, exec_us=190, hits=1, map=644, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #168 (249 total, 0 crashes saved, perf_score=0, exec_us=198, hits=1, map=330, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #169 (249 total, 0 crashes saved, perf_score=0, exec_us=202, hits=1, map=616, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #170 (250 total, 0 crashes saved, perf_score=0, exec_us=192, hits=1, map=462, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #173 (250 total, 0 crashes saved, perf_score=0, exec_us=190, hits=2, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #175 (273 total, 0 crashes saved, perf_score=0, exec_us=189, hits=1, map=255, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #177 (274 total, 0 crashes saved, perf_score=0, exec_us=199, hits=1, map=462, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #181 (276 total, 0 crashes saved, perf_score=0, exec_us=205, hits=1, map=305, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #182 (277 total, 0 crashes saved, perf_score=0, exec_us=190, hits=2, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #187 (277 total, 0 crashes saved, perf_score=0, exec_us=197, hits=1, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #188 (278 total, 0 crashes saved, perf_score=0, exec_us=173, hits=2, map=293, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #190 (279 total, 0 crashes saved, perf_score=0, exec_us=184, hits=1, map=305, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #195 (281 total, 0 crashes saved, perf_score=0, exec_us=208, hits=1, map=868, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #196 (282 total, 0 crashes saved, perf_score=0, exec_us=178, hits=1, map=340, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #199 (282 total, 0 crashes saved, perf_score=0, exec_us=210, hits=1, map=933, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #201 (282 total, 0 crashes saved, perf_score=0, exec_us=193, hits=1, map=662, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #202 (282 total, 0 crashes saved, perf_score=0, exec_us=225, hits=1, map=955, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #205 (282 total, 0 crashes saved, perf_score=0, exec_us=185, hits=1, map=498, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #211 (282 total, 0 crashes saved, perf_score=0, exec_us=197, hits=25, map=700, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #213 (282 total, 0 crashes saved, perf_score=0, exec_us=230, hits=29, map=941, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #225 (283 total, 0 crashes saved, perf_score=0, exec_us=198, hits=68, map=893, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #239 (285 total, 0 crashes saved, perf_score=0, exec_us=359, hits=16, map=1337, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #244 (293 total, 0 crashes saved, perf_score=0, exec_us=190, hits=230, map=358, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #246 (294 total, 0 crashes saved, perf_score=0, exec_us=200, hits=1, map=280, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #249 (295 total, 0 crashes saved, perf_score=0, exec_us=188, hits=1, map=421, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #251 (295 total, 0 crashes saved, perf_score=0, exec_us=171, hits=7, map=314, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #252 (295 total, 0 crashes saved, perf_score=0, exec_us=200, hits=11, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #254 (295 total, 0 crashes saved, perf_score=0, exec_us=190, hits=2, map=308, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #256 (298 total, 0 crashes saved, perf_score=0, exec_us=195, hits=46, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #257 (298 total, 0 crashes saved, perf_score=0, exec_us=174, hits=17, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #260 (298 total, 0 crashes saved, perf_score=0, exec_us=180, hits=1, map=308, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #261 (298 total, 0 crashes saved, perf_score=0, exec_us=197, hits=1, map=307, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #262 (298 total, 0 crashes saved, perf_score=0, exec_us=185, hits=1, map=372, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #263 (300 total, 0 crashes saved, perf_score=0, exec_us=183, hits=10, map=312, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #264 (300 total, 0 crashes saved, perf_score=0, exec_us=179, hits=1, map=362, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #265 (303 total, 0 crashes saved, perf_score=0, exec_us=185, hits=1, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #266 (303 total, 0 crashes saved, perf_score=0, exec_us=186, hits=7, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #273 (304 total, 0 crashes saved, perf_score=0, exec_us=182, hits=1, map=359, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #276 (304 total, 0 crashes saved, perf_score=0, exec_us=204, hits=4, map=305, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #281 (306 total, 0 crashes saved, perf_score=0, exec_us=213, hits=1, map=894, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #287 (322 total, 0 crashes saved, perf_score=0, exec_us=345, hits=1, map=1346, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #298 (323 total, 0 crashes saved, perf_score=0, exec_us=182, hits=2, map=351, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #302 (324 total, 0 crashes saved, perf_score=0, exec_us=173, hits=1, map=349, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #305 (325 total, 0 crashes saved, perf_score=0, exec_us=174, hits=1, map=305, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #307 (325 total, 0 crashes saved, perf_score=0, exec_us=193, hits=1, map=314, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #310 (338 total, 0 crashes saved, perf_score=0, exec_us=206, hits=1, map=895, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #311 (341 total, 0 crashes saved, perf_score=0, exec_us=183, hits=2, map=781, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #316 (342 total, 0 crashes saved, perf_score=0, exec_us=198, hits=1, map=459, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #322 (342 total, 0 crashes saved, perf_score=0, exec_us=332, hits=1, map=1336, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #328 (345 total, 0 crashes saved, perf_score=0, exec_us=203, hits=1, map=314, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #335 (345 total, 0 crashes saved, perf_score=0, exec_us=197, hits=1, map=331, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #338 (346 total, 0 crashes saved, perf_score=0, exec_us=180, hits=4, map=408, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #345 (346 total, 0 crashes saved, perf_score=0, exec_us=193, hits=1, map=321, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #346 (353 total, 0 crashes saved, perf_score=0, exec_us=179, hits=185, map=341, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #348 (353 total, 0 crashes saved, perf_score=0, exec_us=197, hits=11, map=282, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #354 (355 total, 0 crashes saved, perf_score=0, exec_us=199, hits=1, map=282, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #355 (356 total, 0 crashes saved, perf_score=0, exec_us=171, hits=1, map=283, ascii=0)...[0m
+[1;94m[*] [0mEntering queue cycle 2.[0m
+[1;94m[*] [0mFuzzing test case #23 (356 total, 0 crashes saved, perf_score=150, exec_us=225, hits=0, map=1190, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #83 (356 total, 0 crashes saved, perf_score=0, exec_us=207, hits=70, map=444, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #142 (356 total, 0 crashes saved, perf_score=0, exec_us=234, hits=1, map=621, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #194 (356 total, 0 crashes saved, perf_score=0, exec_us=207, hits=1, map=822, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #272 (356 total, 0 crashes saved, perf_score=0, exec_us=170, hits=1, map=370, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #273 (358 total, 0 crashes saved, perf_score=75, exec_us=182, hits=1814, map=359, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #274 (359 total, 0 crashes saved, perf_score=0, exec_us=239, hits=40, map=1268, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #278 (360 total, 0 crashes saved, perf_score=0, exec_us=175, hits=4, map=358, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #280 (362 total, 0 crashes saved, perf_score=0, exec_us=177, hits=2, map=305, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #283 (362 total, 0 crashes saved, perf_score=0, exec_us=220, hits=48, map=893, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #286 (365 total, 0 crashes saved, perf_score=0, exec_us=327, hits=34, map=1336, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #288 (370 total, 0 crashes saved, perf_score=0, exec_us=326, hits=1, map=1321, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #289 (370 total, 0 crashes saved, perf_score=0, exec_us=342, hits=1, map=1339, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #296 (370 total, 0 crashes saved, perf_score=0, exec_us=201, hits=2, map=307, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #350 (371 total, 0 crashes saved, perf_score=0, exec_us=200, hits=1, map=350, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #370 (371 total, 0 crashes saved, perf_score=0, exec_us=180, hits=1, map=362, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #372 (377 total, 0 crashes saved, perf_score=0, exec_us=223, hits=1, map=366, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #373 (378 total, 0 crashes saved, perf_score=0, exec_us=184, hits=1, map=362, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #378 (380 total, 0 crashes saved, perf_score=0, exec_us=179, hits=1, map=351, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #381 (382 total, 0 crashes saved, perf_score=0, exec_us=192, hits=1, map=376, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #382 (385 total, 0 crashes saved, perf_score=0, exec_us=189, hits=13, map=377, ascii=0)...[0m
+[1;94m[*] [0mEntering queue cycle 3.[0m
+[1;94m[*] [0mFuzzing test case #1 (420 total, 0 crashes saved, perf_score=100, exec_us=211, hits=0, map=646, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #57 (420 total, 0 crashes saved, perf_score=100, exec_us=205, hits=0, map=563, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #112 (420 total, 0 crashes saved, perf_score=0, exec_us=194, hits=3, map=636, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #216 (420 total, 0 crashes saved, perf_score=0, exec_us=311, hits=3, map=1278, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #221 (420 total, 0 crashes saved, perf_score=0, exec_us=173, hits=1, map=380, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #331 (420 total, 0 crashes saved, perf_score=0, exec_us=202, hits=2, map=303, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #395 (420 total, 0 crashes saved, perf_score=0, exec_us=191, hits=1, map=362, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #398 (421 total, 0 crashes saved, perf_score=0, exec_us=181, hits=1, map=381, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #399 (422 total, 0 crashes saved, perf_score=0, exec_us=226, hits=1, map=957, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #402 (422 total, 0 crashes saved, perf_score=0, exec_us=191, hits=1, map=333, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #406 (422 total, 0 crashes saved, perf_score=0, exec_us=228, hits=1, map=993, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #410 (422 total, 0 crashes saved, perf_score=0, exec_us=243, hits=1, map=1292, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #412 (422 total, 0 crashes saved, perf_score=0, exec_us=216, hits=1, map=1120, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #417 (422 total, 0 crashes saved, perf_score=0, exec_us=193, hits=1, map=330, ascii=0)...[0m
+[1;94m[*] [0mEntering queue cycle 4.[0m
+[1;94m[*] [0mFuzzing test case #4 (426 total, 0 crashes saved, perf_score=0, exec_us=312, hits=0, map=1311, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #7 (426 total, 0 crashes saved, perf_score=0, exec_us=347, hits=0, map=1269, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #10 (426 total, 0 crashes saved, perf_score=0, exec_us=289, hits=0, map=1009, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #16 (426 total, 0 crashes saved, perf_score=0, exec_us=510, hits=0, map=1329, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #17 (426 total, 0 crashes saved, perf_score=0, exec_us=291, hits=0, map=1253, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #18 (426 total, 0 crashes saved, perf_score=0, exec_us=320, hits=0, map=1137, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #24 (426 total, 0 crashes saved, perf_score=0, exec_us=244, hits=0, map=1094, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #26 (426 total, 0 crashes saved, perf_score=0, exec_us=242, hits=0, map=1034, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #27 (426 total, 0 crashes saved, perf_score=0, exec_us=205, hits=0, map=995, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #28 (427 total, 0 crashes saved, perf_score=150, exec_us=241, hits=0, map=1107, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #48 (428 total, 0 crashes saved, perf_score=150, exec_us=233, hits=0, map=985, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #49 (428 total, 0 crashes saved, perf_score=100, exec_us=188, hits=0, map=736, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #51 (428 total, 0 crashes saved, perf_score=0, exec_us=244, hits=0, map=703, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #56 (428 total, 0 crashes saved, perf_score=0, exec_us=225, hits=0, map=929, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #57 (428 total, 0 crashes saved, perf_score=459, exec_us=205, hits=0, map=563, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #62 (428 total, 0 crashes saved, perf_score=150, exec_us=226, hits=0, map=846, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #65 (428 total, 0 crashes saved, perf_score=150, exec_us=195, hits=909, map=874, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #67 (428 total, 0 crashes saved, perf_score=150, exec_us=219, hits=1458, map=900, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #77 (428 total, 0 crashes saved, perf_score=50, exec_us=177, hits=1495, map=210, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #79 (428 total, 0 crashes saved, perf_score=0, exec_us=195, hits=2132, map=326, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #81 (428 total, 0 crashes saved, perf_score=50, exec_us=185, hits=2541, map=273, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #82 (428 total, 0 crashes saved, perf_score=50, exec_us=192, hits=589, map=310, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #83 (428 total, 0 crashes saved, perf_score=100, exec_us=207, hits=850, map=444, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #84 (428 total, 0 crashes saved, perf_score=50, exec_us=202, hits=377, map=221, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #87 (428 total, 0 crashes saved, perf_score=100, exec_us=206, hits=263, map=665, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #88 (428 total, 0 crashes saved, perf_score=25, exec_us=166, hits=393, map=157, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #89 (428 total, 0 crashes saved, perf_score=50, exec_us=185, hits=517, map=272, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #90 (428 total, 0 crashes saved, perf_score=75, exec_us=179, hits=1030, map=329, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #91 (429 total, 0 crashes saved, perf_score=75, exec_us=182, hits=127, map=362, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #109 (429 total, 0 crashes saved, perf_score=75, exec_us=193, hits=270, map=386, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #165 (429 total, 0 crashes saved, perf_score=50, exec_us=184, hits=214, map=312, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #209 (429 total, 0 crashes saved, perf_score=0, exec_us=231, hits=1, map=782, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #310 (429 total, 0 crashes saved, perf_score=300, exec_us=206, hits=843, map=895, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #356 (429 total, 0 crashes saved, perf_score=0, exec_us=181, hits=2, map=359, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #428 (429 total, 0 crashes saved, perf_score=0, exec_us=187, hits=1, map=304, ascii=0)...[0m
+[1;94m[*] [0mEntering queue cycle 5.[0m
+[1;94m[*] [0mFuzzing test case #9 (432 total, 0 crashes saved, perf_score=0, exec_us=306, hits=0, map=1110, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #12 (432 total, 0 crashes saved, perf_score=0, exec_us=381, hits=0, map=1331, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #14 (432 total, 0 crashes saved, perf_score=0, exec_us=284, hits=0, map=1194, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #19 (432 total, 0 crashes saved, perf_score=0, exec_us=327, hits=0, map=1201, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #22 (432 total, 0 crashes saved, perf_score=0, exec_us=270, hits=0, map=1281, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #28 (432 total, 0 crashes saved, perf_score=690, exec_us=241, hits=0, map=1107, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #30 (432 total, 0 crashes saved, perf_score=0, exec_us=260, hits=0, map=816, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #36 (433 total, 0 crashes saved, perf_score=0, exec_us=295, hits=0, map=1176, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #46 (433 total, 0 crashes saved, perf_score=0, exec_us=235, hits=0, map=805, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #47 (433 total, 0 crashes saved, perf_score=0, exec_us=236, hits=0, map=823, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #49 (433 total, 0 crashes saved, perf_score=459, exec_us=188, hits=0, map=736, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #50 (433 total, 0 crashes saved, perf_score=0, exec_us=235, hits=0, map=1009, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #55 (434 total, 0 crashes saved, perf_score=100, exec_us=218, hits=0, map=662, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #57 (435 total, 0 crashes saved, perf_score=459, exec_us=205, hits=0, map=563, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #62 (435 total, 0 crashes saved, perf_score=459, exec_us=226, hits=0, map=846, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #65 (435 total, 0 crashes saved, perf_score=172, exec_us=195, hits=910, map=874, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #66 (435 total, 0 crashes saved, perf_score=0, exec_us=220, hits=15, map=827, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #67 (435 total, 0 crashes saved, perf_score=172, exec_us=219, hits=1893, map=900, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #72 (436 total, 0 crashes saved, perf_score=0, exec_us=187, hits=3024, map=281, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #75 (436 total, 0 crashes saved, perf_score=0, exec_us=170, hits=627, map=267, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #76 (436 total, 0 crashes saved, perf_score=0, exec_us=189, hits=6365, map=724, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #77 (436 total, 0 crashes saved, perf_score=28, exec_us=177, hits=1743, map=210, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #80 (436 total, 0 crashes saved, perf_score=0, exec_us=180, hits=241, map=199, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #81 (436 total, 0 crashes saved, perf_score=57, exec_us=185, hits=3164, map=273, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #82 (436 total, 0 crashes saved, perf_score=57, exec_us=192, hits=1646, map=310, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #83 (436 total, 0 crashes saved, perf_score=114, exec_us=207, hits=1928, map=444, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #84 (436 total, 0 crashes saved, perf_score=57, exec_us=202, hits=678, map=221, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #87 (436 total, 0 crashes saved, perf_score=114, exec_us=206, hits=561, map=665, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #88 (436 total, 0 crashes saved, perf_score=28, exec_us=166, hits=549, map=157, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #89 (436 total, 0 crashes saved, perf_score=57, exec_us=185, hits=696, map=272, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #91 (436 total, 0 crashes saved, perf_score=86, exec_us=182, hits=278, map=362, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #95 (436 total, 0 crashes saved, perf_score=25, exec_us=186, hits=2351, map=169, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #96 (436 total, 0 crashes saved, perf_score=100, exec_us=196, hits=272, map=802, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #97 (436 total, 0 crashes saved, perf_score=0, exec_us=201, hits=1, map=647, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #98 (436 total, 0 crashes saved, perf_score=75, exec_us=198, hits=232, map=380, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #99 (436 total, 0 crashes saved, perf_score=25, exec_us=171, hits=253, map=199, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #104 (436 total, 0 crashes saved, perf_score=50, exec_us=184, hits=2365, map=241, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #106 (436 total, 0 crashes saved, perf_score=25, exec_us=194, hits=821, map=201, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #107 (436 total, 0 crashes saved, perf_score=0, exec_us=196, hits=156, map=169, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #108 (436 total, 0 crashes saved, perf_score=100, exec_us=194, hits=373, map=605, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #109 (436 total, 0 crashes saved, perf_score=86, exec_us=193, hits=523, map=386, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #110 (436 total, 0 crashes saved, perf_score=75, exec_us=197, hits=331, map=349, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #111 (436 total, 0 crashes saved, perf_score=50, exec_us=185, hits=2117, map=245, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #113 (436 total, 0 crashes saved, perf_score=25, exec_us=194, hits=1468, map=201, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #115 (436 total, 0 crashes saved, perf_score=50, exec_us=185, hits=236, map=267, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #118 (436 total, 0 crashes saved, perf_score=25, exec_us=173, hits=123, map=198, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #119 (436 total, 0 crashes saved, perf_score=50, exec_us=177, hits=2364, map=222, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #120 (436 total, 0 crashes saved, perf_score=25, exec_us=183, hits=1085, map=132, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #122 (436 total, 0 crashes saved, perf_score=25, exec_us=165, hits=98, map=134, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #127 (436 total, 0 crashes saved, perf_score=100, exec_us=185, hits=658, map=689, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #128 (436 total, 0 crashes saved, perf_score=25, exec_us=170, hits=153, map=169, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #129 (436 total, 0 crashes saved, perf_score=0, exec_us=167, hits=41, map=213, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #130 (436 total, 0 crashes saved, perf_score=50, exec_us=190, hits=1746, map=300, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #131 (436 total, 0 crashes saved, perf_score=0, exec_us=186, hits=301, map=132, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #132 (436 total, 0 crashes saved, perf_score=50, exec_us=194, hits=2756, map=221, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #135 (436 total, 0 crashes saved, perf_score=75, exec_us=178, hits=2025, map=355, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #138 (436 total, 0 crashes saved, perf_score=50, exec_us=190, hits=1102, map=225, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #141 (436 total, 0 crashes saved, perf_score=25, exec_us=174, hits=101, map=134, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #142 (436 total, 0 crashes saved, perf_score=100, exec_us=234, hits=269, map=621, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #143 (436 total, 0 crashes saved, perf_score=0, exec_us=235, hits=2, map=395, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #146 (436 total, 0 crashes saved, perf_score=75, exec_us=233, hits=849, map=330, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #150 (436 total, 0 crashes saved, perf_score=0, exec_us=212, hits=66, map=769, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #151 (437 total, 0 crashes saved, perf_score=25, exec_us=231, hits=204, map=205, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #154 (438 total, 0 crashes saved, perf_score=0, exec_us=205, hits=190, map=825, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #155 (439 total, 0 crashes saved, perf_score=0, exec_us=186, hits=66, map=664, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #157 (449 total, 0 crashes saved, perf_score=100, exec_us=197, hits=642, map=766, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #158 (449 total, 0 crashes saved, perf_score=0, exec_us=210, hits=1, map=625, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #159 (449 total, 0 crashes saved, perf_score=0, exec_us=185, hits=1, map=301, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #165 (450 total, 0 crashes saved, perf_score=57, exec_us=184, hits=454, map=312, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #167 (450 total, 0 crashes saved, perf_score=100, exec_us=190, hits=139, map=644, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #168 (450 total, 0 crashes saved, perf_score=75, exec_us=198, hits=953, map=330, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #170 (450 total, 0 crashes saved, perf_score=100, exec_us=192, hits=153, map=462, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #171 (450 total, 0 crashes saved, perf_score=0, exec_us=190, hits=47, map=274, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #175 (450 total, 0 crashes saved, perf_score=50, exec_us=189, hits=789, map=255, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #177 (450 total, 0 crashes saved, perf_score=100, exec_us=199, hits=129, map=462, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #182 (450 total, 0 crashes saved, perf_score=50, exec_us=190, hits=976, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #186 (451 total, 0 crashes saved, perf_score=0, exec_us=166, hits=1, map=305, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #187 (451 total, 0 crashes saved, perf_score=50, exec_us=197, hits=1370, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #188 (451 total, 0 crashes saved, perf_score=50, exec_us=173, hits=1243, map=293, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #190 (451 total, 0 crashes saved, perf_score=50, exec_us=184, hits=367, map=305, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #196 (451 total, 0 crashes saved, perf_score=75, exec_us=178, hits=323, map=340, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #198 (451 total, 0 crashes saved, perf_score=0, exec_us=214, hits=47, map=724, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #199 (452 total, 0 crashes saved, perf_score=150, exec_us=210, hits=537, map=933, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #200 (452 total, 0 crashes saved, perf_score=0, exec_us=191, hits=1, map=480, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #201 (452 total, 0 crashes saved, perf_score=100, exec_us=193, hits=1153, map=662, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #202 (452 total, 0 crashes saved, perf_score=150, exec_us=225, hits=682, map=955, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #204 (453 total, 0 crashes saved, perf_score=0, exec_us=177, hits=1, map=362, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #212 (453 total, 0 crashes saved, perf_score=0, exec_us=203, hits=1, map=672, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #219 (453 total, 0 crashes saved, perf_score=0, exec_us=315, hits=2, map=1280, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #225 (453 total, 0 crashes saved, perf_score=150, exec_us=198, hits=1342, map=893, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #238 (453 total, 0 crashes saved, perf_score=0, exec_us=366, hits=16, map=1355, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #244 (454 total, 0 crashes saved, perf_score=75, exec_us=190, hits=2531, map=358, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #246 (454 total, 0 crashes saved, perf_score=50, exec_us=200, hits=126, map=280, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #249 (454 total, 0 crashes saved, perf_score=75, exec_us=188, hits=285, map=421, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #251 (454 total, 0 crashes saved, perf_score=50, exec_us=171, hits=1314, map=314, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #252 (454 total, 0 crashes saved, perf_score=50, exec_us=200, hits=1889, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #256 (454 total, 0 crashes saved, perf_score=50, exec_us=195, hits=1612, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #257 (454 total, 0 crashes saved, perf_score=50, exec_us=174, hits=1297, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #260 (454 total, 0 crashes saved, perf_score=50, exec_us=180, hits=204, map=308, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #262 (454 total, 0 crashes saved, perf_score=75, exec_us=185, hits=712, map=372, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #263 (454 total, 0 crashes saved, perf_score=50, exec_us=183, hits=168, map=312, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #264 (454 total, 0 crashes saved, perf_score=75, exec_us=179, hits=334, map=362, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #266 (454 total, 0 crashes saved, perf_score=50, exec_us=186, hits=2531, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #269 (454 total, 0 crashes saved, perf_score=0, exec_us=200, hits=3, map=388, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #272 (454 total, 0 crashes saved, perf_score=75, exec_us=170, hits=318, map=370, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #273 (454 total, 0 crashes saved, perf_score=86, exec_us=182, hits=4199, map=359, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #278 (454 total, 0 crashes saved, perf_score=75, exec_us=175, hits=305, map=358, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #280 (454 total, 0 crashes saved, perf_score=50, exec_us=177, hits=167, map=305, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #282 (454 total, 0 crashes saved, perf_score=0, exec_us=213, hits=79, map=981, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #284 (455 total, 0 crashes saved, perf_score=0, exec_us=199, hits=345, map=832, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #294 (455 total, 0 crashes saved, perf_score=0, exec_us=369, hits=68, map=1303, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #297 (462 total, 0 crashes saved, perf_score=0, exec_us=184, hits=1, map=362, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #298 (462 total, 0 crashes saved, perf_score=75, exec_us=182, hits=1681, map=351, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #301 (462 total, 0 crashes saved, perf_score=0, exec_us=191, hits=1, map=362, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #305 (463 total, 0 crashes saved, perf_score=50, exec_us=174, hits=209, map=305, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #310 (463 total, 0 crashes saved, perf_score=345, exec_us=206, hits=1655, map=895, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #311 (463 total, 0 crashes saved, perf_score=200, exec_us=183, hits=313, map=781, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #316 (463 total, 0 crashes saved, perf_score=200, exec_us=198, hits=1170, map=459, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #320 (464 total, 0 crashes saved, perf_score=0, exec_us=210, hits=1, map=927, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #322 (465 total, 0 crashes saved, perf_score=300, exec_us=332, hits=24, map=1336, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #325 (465 total, 0 crashes saved, perf_score=0, exec_us=368, hits=3, map=313, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #328 (465 total, 0 crashes saved, perf_score=100, exec_us=203, hits=162, map=314, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #333 (465 total, 0 crashes saved, perf_score=0, exec_us=183, hits=1, map=313, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #338 (465 total, 0 crashes saved, perf_score=150, exec_us=180, hits=418, map=408, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #344 (465 total, 0 crashes saved, perf_score=0, exec_us=212, hits=1, map=415, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #346 (466 total, 0 crashes saved, perf_score=150, exec_us=179, hits=667, map=341, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #347 (466 total, 0 crashes saved, perf_score=0, exec_us=187, hits=6, map=293, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #351 (466 total, 0 crashes saved, perf_score=0, exec_us=181, hits=1, map=320, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #352 (467 total, 0 crashes saved, perf_score=0, exec_us=180, hits=1, map=341, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #354 (468 total, 0 crashes saved, perf_score=150, exec_us=199, hits=295, map=282, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #355 (468 total, 0 crashes saved, perf_score=150, exec_us=171, hits=198, map=283, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #362 (470 total, 0 crashes saved, perf_score=0, exec_us=191, hits=125, map=893, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #367 (471 total, 0 crashes saved, perf_score=0, exec_us=255, hits=1, map=1190, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #370 (472 total, 0 crashes saved, perf_score=300, exec_us=180, hits=1575, map=362, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #372 (472 total, 0 crashes saved, perf_score=300, exec_us=223, hits=481, map=366, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #472 (473 total, 0 crashes saved, perf_score=0, exec_us=317, hits=1, map=395, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #475 (476 total, 0 crashes saved, perf_score=0, exec_us=210, hits=1, map=398, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #476 (482 total, 0 crashes saved, perf_score=0, exec_us=202, hits=1, map=428, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #477 (487 total, 0 crashes saved, perf_score=0, exec_us=195, hits=1, map=423, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #482 (487 total, 0 crashes saved, perf_score=0, exec_us=188, hits=1, map=414, ascii=0)...[0m
+[1;94m[*] [0mEntering queue cycle 6.[0m
+[1;94m[*] [0mFuzzing test case #2 (494 total, 0 crashes saved, perf_score=0, exec_us=265, hits=0, map=1169, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #169 (494 total, 0 crashes saved, perf_score=100, exec_us=202, hits=294, map=616, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #347 (494 total, 0 crashes saved, perf_score=100, exec_us=187, hits=2458, map=293, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #364 (494 total, 0 crashes saved, perf_score=0, exec_us=260, hits=1, map=1187, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #470 (494 total, 0 crashes saved, perf_score=0, exec_us=227, hits=1, map=857, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #492 (497 total, 0 crashes saved, perf_score=0, exec_us=221, hits=1, map=383, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #497 (498 total, 0 crashes saved, perf_score=0, exec_us=228, hits=1, map=382, ascii=0)...[0m
+[1;94m[*] [0mEntering queue cycle 7.[0m
+[1;94m[*] [0mFuzzing test case #3 (500 total, 0 crashes saved, perf_score=0, exec_us=347, hits=0, map=1290, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #5 (500 total, 0 crashes saved, perf_score=0, exec_us=324, hits=0, map=1232, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #20 (500 total, 0 crashes saved, perf_score=0, exec_us=277, hits=0, map=1159, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #25 (500 total, 0 crashes saved, perf_score=0, exec_us=277, hits=0, map=1108, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #28 (500 total, 0 crashes saved, perf_score=690, exec_us=241, hits=0, map=1107, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #32 (500 total, 0 crashes saved, perf_score=0, exec_us=253, hits=0, map=1055, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #34 (500 total, 0 crashes saved, perf_score=0, exec_us=252, hits=0, map=1114, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #35 (500 total, 0 crashes saved, perf_score=0, exec_us=245, hits=0, map=1072, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #40 (500 total, 0 crashes saved, perf_score=0, exec_us=234, hits=0, map=1050, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #41 (500 total, 0 crashes saved, perf_score=0, exec_us=238, hits=0, map=869, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #42 (500 total, 0 crashes saved, perf_score=0, exec_us=209, hits=0, map=563, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #48 (500 total, 0 crashes saved, perf_score=600, exec_us=233, hits=0, map=985, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #49 (500 total, 0 crashes saved, perf_score=459, exec_us=188, hits=0, map=736, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #57 (500 total, 0 crashes saved, perf_score=459, exec_us=205, hits=0, map=563, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #60 (500 total, 0 crashes saved, perf_score=0, exec_us=243, hits=0, map=781, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #62 (500 total, 0 crashes saved, perf_score=459, exec_us=226, hits=0, map=846, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #65 (500 total, 0 crashes saved, perf_score=172, exec_us=195, hits=910, map=874, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #67 (500 total, 0 crashes saved, perf_score=172, exec_us=219, hits=2571, map=900, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #72 (500 total, 0 crashes saved, perf_score=50, exec_us=187, hits=7335, map=281, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #77 (500 total, 0 crashes saved, perf_score=28, exec_us=177, hits=2859, map=210, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #78 (500 total, 0 crashes saved, perf_score=0, exec_us=205, hits=3609, map=395, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #81 (500 total, 0 crashes saved, perf_score=57, exec_us=185, hits=4701, map=273, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #82 (500 total, 0 crashes saved, perf_score=57, exec_us=192, hits=2288, map=310, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #83 (500 total, 0 crashes saved, perf_score=114, exec_us=207, hits=2926, map=444, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #84 (500 total, 0 crashes saved, perf_score=57, exec_us=202, hits=1050, map=221, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #87 (500 total, 0 crashes saved, perf_score=114, exec_us=206, hits=850, map=665, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #88 (501 total, 0 crashes saved, perf_score=28, exec_us=166, hits=1086, map=157, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #89 (501 total, 0 crashes saved, perf_score=57, exec_us=185, hits=920, map=272, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #91 (501 total, 0 crashes saved, perf_score=86, exec_us=182, hits=464, map=362, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #93 (501 total, 0 crashes saved, perf_score=0, exec_us=176, hits=3784, map=221, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #95 (501 total, 0 crashes saved, perf_score=28, exec_us=186, hits=4767, map=169, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #96 (501 total, 0 crashes saved, perf_score=114, exec_us=196, hits=584, map=802, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #98 (501 total, 0 crashes saved, perf_score=86, exec_us=198, hits=543, map=380, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #99 (501 total, 0 crashes saved, perf_score=28, exec_us=171, hits=448, map=199, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #104 (501 total, 0 crashes saved, perf_score=57, exec_us=184, hits=5072, map=241, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #106 (501 total, 0 crashes saved, perf_score=28, exec_us=194, hits=1742, map=201, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #108 (501 total, 0 crashes saved, perf_score=114, exec_us=194, hits=817, map=605, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #109 (501 total, 0 crashes saved, perf_score=86, exec_us=193, hits=760, map=386, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #110 (501 total, 0 crashes saved, perf_score=86, exec_us=197, hits=673, map=349, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #111 (501 total, 0 crashes saved, perf_score=57, exec_us=185, hits=3743, map=245, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #113 (501 total, 0 crashes saved, perf_score=28, exec_us=194, hits=2772, map=201, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #115 (501 total, 0 crashes saved, perf_score=57, exec_us=185, hits=496, map=267, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #118 (502 total, 0 crashes saved, perf_score=28, exec_us=173, hits=243, map=198, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #119 (502 total, 0 crashes saved, perf_score=57, exec_us=177, hits=5941, map=222, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #120 (502 total, 0 crashes saved, perf_score=28, exec_us=183, hits=2114, map=132, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #121 (502 total, 0 crashes saved, perf_score=0, exec_us=209, hits=5, map=395, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #122 (502 total, 0 crashes saved, perf_score=28, exec_us=165, hits=217, map=134, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #125 (502 total, 0 crashes saved, perf_score=0, exec_us=184, hits=18, map=170, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #127 (502 total, 0 crashes saved, perf_score=114, exec_us=185, hits=1090, map=689, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #128 (502 total, 0 crashes saved, perf_score=28, exec_us=170, hits=291, map=169, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #130 (502 total, 0 crashes saved, perf_score=57, exec_us=190, hits=3761, map=300, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #132 (502 total, 0 crashes saved, perf_score=57, exec_us=194, hits=6919, map=221, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #135 (502 total, 0 crashes saved, perf_score=86, exec_us=178, hits=4211, map=355, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #137 (502 total, 0 crashes saved, perf_score=0, exec_us=196, hits=1, map=616, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #138 (502 total, 0 crashes saved, perf_score=57, exec_us=190, hits=1324, map=225, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #141 (502 total, 0 crashes saved, perf_score=28, exec_us=174, hits=220, map=134, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #142 (502 total, 0 crashes saved, perf_score=114, exec_us=234, hits=569, map=621, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #143 (502 total, 0 crashes saved, perf_score=75, exec_us=235, hits=881, map=395, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #146 (503 total, 0 crashes saved, perf_score=86, exec_us=233, hits=1212, map=330, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #151 (503 total, 0 crashes saved, perf_score=28, exec_us=231, hits=1323, map=205, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #153 (503 total, 0 crashes saved, perf_score=0, exec_us=210, hits=527, map=644, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #157 (503 total, 0 crashes saved, perf_score=114, exec_us=197, hits=1379, map=766, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #160 (503 total, 0 crashes saved, perf_score=0, exec_us=209, hits=101, map=819, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #165 (503 total, 0 crashes saved, perf_score=57, exec_us=184, hits=711, map=312, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #167 (503 total, 0 crashes saved, perf_score=114, exec_us=190, hits=308, map=644, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #168 (503 total, 0 crashes saved, perf_score=86, exec_us=198, hits=2727, map=330, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #170 (503 total, 0 crashes saved, perf_score=114, exec_us=192, hits=314, map=462, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #175 (503 total, 0 crashes saved, perf_score=57, exec_us=189, hits=1218, map=255, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #177 (503 total, 0 crashes saved, perf_score=114, exec_us=199, hits=290, map=462, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #182 (503 total, 0 crashes saved, perf_score=57, exec_us=190, hits=1946, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #183 (503 total, 0 crashes saved, perf_score=0, exec_us=185, hits=2, map=301, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #185 (503 total, 0 crashes saved, perf_score=0, exec_us=187, hits=2, map=325, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #187 (503 total, 0 crashes saved, perf_score=57, exec_us=197, hits=1954, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #188 (503 total, 0 crashes saved, perf_score=57, exec_us=173, hits=2138, map=293, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #190 (503 total, 0 crashes saved, perf_score=57, exec_us=184, hits=550, map=305, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #196 (503 total, 0 crashes saved, perf_score=86, exec_us=178, hits=559, map=340, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #199 (503 total, 0 crashes saved, perf_score=172, exec_us=210, hits=1094, map=933, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #201 (503 total, 0 crashes saved, perf_score=114, exec_us=193, hits=2486, map=662, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #202 (503 total, 0 crashes saved, perf_score=172, exec_us=225, hits=1479, map=955, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #203 (503 total, 0 crashes saved, perf_score=0, exec_us=204, hits=61, map=651, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #207 (505 total, 0 crashes saved, perf_score=0, exec_us=223, hits=1, map=756, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #222 (505 total, 0 crashes saved, perf_score=0, exec_us=205, hits=341, map=914, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #225 (505 total, 0 crashes saved, perf_score=172, exec_us=198, hits=2000, map=893, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #226 (505 total, 0 crashes saved, perf_score=0, exec_us=201, hits=1, map=886, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #229 (505 total, 0 crashes saved, perf_score=0, exec_us=335, hits=6, map=1304, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #231 (505 total, 0 crashes saved, perf_score=0, exec_us=317, hits=4, map=1304, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #232 (505 total, 0 crashes saved, perf_score=0, exec_us=327, hits=3, map=1306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #235 (505 total, 0 crashes saved, perf_score=0, exec_us=177, hits=1, map=220, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #240 (505 total, 0 crashes saved, perf_score=0, exec_us=345, hits=1, map=1337, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #244 (505 total, 0 crashes saved, perf_score=86, exec_us=190, hits=4739, map=358, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #246 (505 total, 0 crashes saved, perf_score=57, exec_us=200, hits=265, map=280, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #249 (505 total, 0 crashes saved, perf_score=86, exec_us=188, hits=522, map=421, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #250 (505 total, 0 crashes saved, perf_score=0, exec_us=192, hits=925, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #251 (505 total, 0 crashes saved, perf_score=57, exec_us=171, hits=2768, map=314, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #252 (505 total, 0 crashes saved, perf_score=57, exec_us=200, hits=3768, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #256 (505 total, 0 crashes saved, perf_score=57, exec_us=195, hits=3476, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #257 (505 total, 0 crashes saved, perf_score=57, exec_us=174, hits=2946, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #260 (505 total, 0 crashes saved, perf_score=57, exec_us=180, hits=435, map=308, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #262 (505 total, 0 crashes saved, perf_score=86, exec_us=185, hits=1787, map=372, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #263 (505 total, 0 crashes saved, perf_score=57, exec_us=183, hits=315, map=312, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #264 (505 total, 0 crashes saved, perf_score=86, exec_us=179, hits=565, map=362, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #266 (505 total, 0 crashes saved, perf_score=57, exec_us=186, hits=4519, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #271 (505 total, 0 crashes saved, perf_score=0, exec_us=185, hits=5, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #272 (505 total, 0 crashes saved, perf_score=86, exec_us=170, hits=594, map=370, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #273 (505 total, 0 crashes saved, perf_score=86, exec_us=182, hits=6573, map=359, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #277 (505 total, 0 crashes saved, perf_score=0, exec_us=188, hits=3, map=307, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #285 (505 total, 0 crashes saved, perf_score=0, exec_us=350, hits=27, map=1391, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #290 (505 total, 0 crashes saved, perf_score=0, exec_us=355, hits=1, map=1358, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #295 (507 total, 0 crashes saved, perf_score=0, exec_us=172, hits=5, map=362, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #298 (507 total, 0 crashes saved, perf_score=86, exec_us=182, hits=3629, map=351, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #299 (507 total, 0 crashes saved, perf_score=0, exec_us=194, hits=65, map=372, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #300 (507 total, 0 crashes saved, perf_score=0, exec_us=192, hits=198, map=368, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #303 (507 total, 0 crashes saved, perf_score=0, exec_us=194, hits=5, map=306, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #305 (507 total, 0 crashes saved, perf_score=57, exec_us=174, hits=440, map=305, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #310 (507 total, 0 crashes saved, perf_score=345, exec_us=206, hits=2599, map=895, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #311 (507 total, 0 crashes saved, perf_score=229, exec_us=183, hits=692, map=781, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #314 (507 total, 0 crashes saved, perf_score=0, exec_us=230, hits=7, map=909, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #315 (507 total, 0 crashes saved, perf_score=0, exec_us=231, hits=10, map=909, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #316 (507 total, 0 crashes saved, perf_score=229, exec_us=198, hits=1866, map=459, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #317 (507 total, 0 crashes saved, perf_score=0, exec_us=215, hits=2, map=621, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #322 (507 total, 0 crashes saved, perf_score=690, exec_us=332, hits=26, map=1336, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #324 (508 total, 0 crashes saved, perf_score=0, exec_us=199, hits=1, map=369, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #326 (508 total, 0 crashes saved, perf_score=0, exec_us=189, hits=1, map=313, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #328 (508 total, 0 crashes saved, perf_score=114, exec_us=203, hits=525, map=314, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #334 (508 total, 0 crashes saved, perf_score=0, exec_us=195, hits=1, map=314, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #338 (508 total, 0 crashes saved, perf_score=172, exec_us=180, hits=905, map=408, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #341 (508 total, 0 crashes saved, perf_score=0, exec_us=196, hits=1, map=822, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #346 (508 total, 0 crashes saved, perf_score=172, exec_us=179, hits=1241, map=341, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #354 (508 total, 0 crashes saved, perf_score=172, exec_us=199, hits=592, map=282, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #355 (508 total, 0 crashes saved, perf_score=172, exec_us=171, hits=740, map=283, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #360 (508 total, 0 crashes saved, perf_score=0, exec_us=187, hits=1, map=378, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #361 (508 total, 0 crashes saved, perf_score=0, exec_us=169, hits=56, map=409, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #370 (509 total, 0 crashes saved, perf_score=172, exec_us=180, hits=2033, map=362, ascii=0)...[0m
+[1;94m[*] [0mFuzzing test case #371 (509 total, 0 crashes saved, perf_score=0, exec_us=187, hits=23, map=382, ascii=0)...[0m
+[?25h[1;91m
+
++++ Testing aborted by user +++
+[0m[1;94m[*] [0mStatistics: 367 new corpus items found, 31.24% coverage achieved, 0 crashes saved, 0 timeouts saved, total runtime 0 days, 0 hrs, 19 min, 5 sec[0m
+[1;92m[+] [0mWe're done here. Have a nice day!
+[0m

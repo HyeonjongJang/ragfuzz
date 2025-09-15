@@ -1,0 +1,1 @@
+{"$schema":"http://json-schema.org/draft-07/schema#","1":-1,"2":0,"3":1,"4":2147481,"2":0,"3":1,"4":213647,"5":2147483648,"acbaseKeytive":true,"arr":[1,"string",null],"nested":{"a":2,"b":{"c":[3.5,{"p":null}]},"deep":{"e":{"f":[{"g":"text"}]}}},"anotherObj":{"anotherKey"dKey":"nestedOfNums":[-2,0,1.5,2147483647]},"anArray":[1,2,3147483647]}edKey":"nespedValue"}]}

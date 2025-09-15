@@ -1,0 +1,414 @@
+RAG-Guided AFL++ JSON Fuzzing — 실행 가이드 (readmi.md)
+
+이 문서는 현재 솔루션을 처음 셋업하는 사람도 바로 재현할 수 있게, 구조·동작·설정·실행·평가·튜닝을 한 번에 정리한 실행 가이드입니다.
+(모든 경로/명령은 ~/ragfuzz 기준)
+
+목차
+
+개요
+
+아키텍처 한눈에 보기
+
+레포 구조
+
+요구 사항
+
+설치 & 기본 환경 설정
+
+코드 구성과 역할
+
+1) mutators/json_adapt.py — 커스텀 변이기(핵심)
+
+2) mutators/sched_ema.py — EMA 스케줄러
+
+3) mutators/json_ops.py — 연산자
+
+4) tools/phase_ctl.py — plateau 감지(옵션)
+
+5) tools/rag_seedgen.py — LLM 시드/사전 생성
+
+6) tools/collect.py — 수집
+
+실행 흐름
+
+1) 최소 스모크
+
+2) LLM 씨드/사전 생성
+
+3) 커리큘럼+자가적응 러닝
+
+4) 사이드카로 plateau 트리거(선택)
+
+평가(AB) 방법
+
+튜닝 가이드
+
+문제 해결
+
+확장 아이디어
+
+재현 명령 요약
+
+개요
+
+목표: RL 없이도 효과의 대부분을 얻는 RAG/LLM-강화 퍼징
+
+핵심:
+
+LLM으로 문법 유효·경계치 풍부한 시드/사전 공급
+
+3단계 커리큘럼(A→B→C) + EMA 스케줄러로 연산자 선택을 자가 최적화
+
+AFL++ 훅을 통해 신규 경로/크래시를 보상 신호로 반영
+
+(선택) 사이드카로 plateau 감지 → 외부에서 B→C 전이/리셋 트리거
+
+아키텍처 한눈에 보기
+
+엔진: AFL++ (afl-fuzz), persistent 타깃 (./targets/json/json_asan)
+
+변이기: mutators/json_adapt.py
+
+EoH-only EMA 스케줄러 + 커리큘럼(A/B/C) 내장
+
+AFL 훅(queue_new_entry, new_crash)으로 실 보상 수집
+
+세이프가드: bytearray 강제 반환, max_size 준수, 예외 시 원본 폴백
+
+사이드카(옵션): tools/phase_ctl.py
+fuzzer_stats에서 plateau 관측 → phase_ctl.json에 신호 기록
+
+RAG/LLM 생성기: tools/rag_seedgen.py
+OpenAI Responses API로 JSON 후보 생성 → 파싱/미니하니스 2단 필터 → 시드/사전 축적
+
+수집: tools/collect.py → plot_data를 CSV로 변환
+
+레포 구조
+ragfuzz/
+├─ mutators/
+│  ├─ json_adapt.py      # 커스텀 변이기(커리큘럼 + EMA + 훅 보상)
+│  ├─ sched_ema.py       # 지수이동평균 스케줄러
+│  └─ json_ops.py        # 연산자 묶음(유연 시그니처, bytes/bytearray 반환)
+├─ tools/
+│  ├─ rag_seedgen.py     # LLM 기반 시드/사전 생성 + 필터
+│  ├─ phase_ctl.py       # plateau 감지 사이드카(옵션)
+│  └─ collect.py         # plot_data → CSV
+├─ corpus/
+│  ├─ json_seeds/        # 기본 시드
+│  ├─ dict/json.dict     # 기본 딕셔너리
+│  ├─ dict/auto.dict     # LLM 생성 키/토큰 누적
+│  └─ dict/combined.dict # 병합 결과
+└─ targets/json/json_asan # 퍼징 타깃(ASAN, persistent)
+
+요구 사항
+
+Linux (WSL2 포함), Python 3.10+
+
+AFL++ 설치 완료 (which afl-fuzz 로 확인)
+
+(선택) OpenAI API 접근 권한 — LLM 씨드 생성을 사용할 경우
+
+설치 & 기본 환경 설정
+# 1) 가상환경(선택)
+conda activate ragfuzz   # 또는 pyenv/venv
+
+# 2) 레포 루트 경로 등록
+cd ~/ragfuzz
+export PYTHONPATH="$PWD"
+export PATH="$HOME/AFLplusplus:$PATH"   # afl-fuzz 경로 포함
+
+# 3) OpenAI 키/설정(LLM 사용 시 1회)
+mkdir -p ~/.secrets ~/.config/ragfuzz
+printf 'sk-...실제키...\n' > ~/.secrets/openai.key
+chmod 700 ~/.secrets
+chmod 600 ~/.secrets/openai.key
+
+cat > ~/.config/ragfuzz/config.toml <<'TOML'
+[llm]
+provider     = "openai"
+model        = "gpt-4o-mini"
+temperature  = 1.1
+api_key_file = "/home/aims/.secrets/openai.key"
+TOML
+
+
+참고: 키를 환경변수로 노출하지 않기 위해 키 파일 분리 방식을 사용합니다.
+
+코드 구성과 역할
+1) mutators/json_adapt.py — 커스텀 변이기(핵심)
+
+의존
+
+from .json_ops import OPS           # 연산자 함수 리스트(1~3 인자 허용)
+from .sched_ema import EMAScheduler # EMA 스케줄러
+
+
+연산자 인덱싱(자동/안전)
+
+_OP_INDEX = {getattr(f, "__name__", f"op_{i}"): i for i, f in enumerate(OPS)}
+def _sanitize_idx_list(lst): ...    # 범위 밖 제거 + 비면 [0]로 대체
+
+
+→ json_ops.py의 연산자 순서/개수 변경에도 자동 적응.
+→ 과거 IndexError 루프를 영구 방지.
+
+상태/파라미터
+
+_PHASE ∈ {A,B,C} (커리큘럼 단계)
+
+_parse_ok/_parse_all(파싱률), _newpath_ts(plateau 판단)
+
+기본값:
+
+PHASE_PARSE_TARGET = 0.90 (A→B 임계)
+
+PLATEAU_WINDOW_SEC = 180, PLATEAU_MIN_NEW = 3 (B/C plateau 판단)
+
+_SCHED = EMAScheduler(n_ops=len(OPS), lam=0.2, tau=0.8, eps=0.02)
+
+커리큘럼
+
+A: ["op_nop","op_fix_basic","op_flip_bool"] → 문법 유효성↑
+
+B: ["op_nop","op_fix_basic","op_num_boundary","op_rare_token"] → 경계/희귀 토큰
+
+C: list(range(len(OPS))) → 전체 연산자 활성화
+
+페이즈 전이
+
+A→B: parse_rate ≥ 0.90 → 스코어 리셋
+
+B→C: plateau 시 → 스코어 리셋
+
+C: plateau 시 스코어 리셋만(경직 방지)
+
+사이드카 연동(선택)
+
+init()에서 AFL_OUT_DIR/default/phase_ctl.json 경로 설정
+
+fuzz()가 128회마다 읽어 B→C 전환/리셋(A는 내부 파싱률로만 전이)
+
+AFL++ 훅
+
+queue_new_entry: 신규 경로 보상 + timestamp 기록
+
+new_crash: 크래시 보상
+
+변이 함수 fuzz()
+
+_phase_ops() → _SCHED.pick()(softmax + eps)
+
+OPS[i](data, add_buf, max_size) 실행
+
+반환은 반드시 bytearray, max_size 절단, 예외 시 원본 폴백
+
+json.loads()로 파싱률 누적
+
+128회마다 전이/사이드카 체크
+
+2) mutators/sched_ema.py — EMA 스케줄러
+
+상태: self.s = [0.0] * n_ops
+
+선택: allowed에 대해 logits = tau * s[i] → softmax 샘플 + eps 무작위 탐색
+
+보상:
+
+r_i = α·Δcoverage + β·1[uniq_crash] + γ·1[new_path]
+s[i] ← (1-λ)·s[i] + λ·r_i
+
+
+현재 파이프라인은 신규 경로/크래시만 사용(Δcoverage=0). 향후 확장 여지.
+
+3) mutators/json_ops.py — 연산자
+
+커리큘럼에서 호출되는 이름:
+
+op_nop, op_fix_basic, op_flip_bool, op_num_boundary, op_rare_token, …
+
+1~3 인자 허용, bytes/bytearray 반환
+(mutator에서 최종 bytearray로 캐스팅)
+
+4) tools/phase_ctl.py — plateau 감지(옵션)
+
+out/.../default/fuzzer_stats 스캔 → paths_total 창 내 증가량 < k ⇒ plateau
+
+out/.../default/phase_ctl.json에 { "plateau": true|false } 기록
+
+5) tools/rag_seedgen.py — LLM 시드/사전 생성
+
+설정: ~/.config/ragfuzz/config.toml
+
+동작:
+
+LLM 생성 → 2) 파싱 통과 → 3) 미니 하니스 통과
+→ corpus/generated/auto_*.json 저장 & corpus/dict/auto.dict 갱신
+
+병합:
+
+cat corpus/dict/json.dict corpus/dict/auto.dict | sort -u > corpus/dict/combined.dict
+
+
+시드 합치기:
+
+mkdir -p corpus/seed_all
+rsync -a corpus/json_seeds/ corpus/seed_all/
+rsync -a corpus/generated/  corpus/seed_all/
+
+6) tools/collect.py — 수집
+
+plot_data → time_sec, cycles_done, edges_found, paths_total CSV 변환
+
+실행 흐름
+1) 최소 스모크
+cd ~/ragfuzz
+export PYTHONPATH="$PWD"
+export AFL_PYTHON_MODULE=mutators.json_adapt
+
+afl-fuzz -i corpus/json_seeds -o out/adapt_smoke \
+  -x corpus/dict/json.dict -m none -t 200 -V 10 -- \
+  ./targets/json/json_asan
+
+
+기대: 세그폴트 없음, 큐 증가, (조건 충족 시) A→B 전이
+
+2) LLM 씨드/사전 생성
+# 후보 40개 생성 → 파싱/미니하니스 필터 → generated/ 저장, auto.dict 업데이트
+python3 tools/rag_seedgen.py --bin ./targets/json/json_asan \
+  --config ~/.config/ragfuzz/config.toml -n 40
+
+# 사전 병합
+cat corpus/dict/json.dict corpus/dict/auto.dict | sort -u > corpus/dict/combined.dict
+
+# 시드 합치기
+mkdir -p corpus/seed_all
+rsync -a corpus/json_seeds/ corpus/seed_all/
+rsync -a corpus/generated/  corpus/seed_all/
+
+3) 커리큘럼+자가적응 러닝
+export PYTHONPATH="$PWD"
+export AFL_PYTHON_MODULE=mutators.json_adapt
+
+afl-fuzz -i corpus/seed_all -o out/llm_10min \
+  -x corpus/dict/combined.dict -m none -t 200 -V 600 -- \
+  ./targets/json/json_asan
+
+
+UI의 dictionary 단계 히트가 보이면 병합 사전 반영 OK.
+
+4) 사이드카로 plateau 트리거(선택)
+
+터미널 A:
+
+python3 tools/phase_ctl.py --out out/llm_10min --window 180 --k 3
+
+
+터미널 B(퍼저):
+
+export AFL_OUT_DIR=out/llm_10min
+afl-fuzz ... -o out/llm_10min ...
+
+
+cat out/llm_10min/default/phase_ctl.json 로 신호 확인
+
+변이기는 128회마다 읽어 B→C 전환/리셋(A는 내부 파싱률로만 전이)
+
+평가(AB) 방법
+
+A: 베이스라인(LLM 없이)
+
+unset AFL_PYTHON_MODULE
+afl-fuzz -i corpus/json_seeds -o out/base_10min \
+  -x corpus/dict/json.dict -m none -t 200 -V 600 -- \
+  ./targets/json/json_asan
+
+
+B: 본 솔루션(LLM + 커리큘럼/EMA)
+
+export PYTHONPATH="$PWD"
+export AFL_PYTHON_MODULE=mutators.json_adapt
+afl-fuzz -i corpus/seed_all -o out/llm_10min \
+  -x corpus/dict/combined.dict -m none -t 200 -V 600 -- \
+  ./targets/json/json_asan
+
+
+수집
+
+python3 tools/collect.py out/base_10min stats_base.csv
+python3 tools/collect.py out/llm_10min  stats_llm.csv
+
+
+비교 지표
+
+edges_found, paths_total (초반 상승 속도 & 총량)
+
+time-to-first-crash(있다면)
+
+dictionary 단계 히트 수
+
+튜닝 가이드
+
+A→B 임계 PHASE_PARSE_TARGET
+유효 JSON이 충분하면 0.85로 낮춰 전이 가속
+
+plateau PLATEAU_WINDOW_SEC, PLATEAU_MIN_NEW
+느린 타깃이면 윈도우↑, 임계↓
+
+EMA lam, tau, eps
+
+탐색↑: eps = 0.05~0.10, tau ↓ (0.6~0.7)
+
+수렴↑: tau ↑ (0.9), lam ↓ (0.1)
+
+LLM 생성량 -n
+초반엔 수십~수백 개로 커버리지 가속
+
+사전 품질
+auto.dict에 키/희귀 리터럴 집중 보강
+
+문제 해결
+
+사전 히트 0: -x 경로/파일 내용 확인(병합 누락?)
+
+세그폴트: 변이기에서 반드시 bytearray 반환, 예외 시 원본 폴백, max_size 준수
+
+IndexError(연산자 인덱스): _sanitize_idx_list가 예방 — 커스텀 연산자 추가 후에도 안전
+
+TypeError(op 인자 수): 연산자 시그니처는 1~3 인자 허용(Python 매칭)
+
+plateau 로그 없음: 사이드카는 파일만 갱신 → phase_ctl.json 직접 확인
+
+확장 아이디어
+
+Δcoverage 보상: 사이드채널/피처 추출로 엣지 증가값 추정 → reward_update(d_cov>0)
+
+Grammar 강화: JSON Schema/RFC/CWE 패턴을 RAG에 더 강하게 주입
+
+자동 루프: rag_loop.sh로 주기적 생성/병합 + plateau 시 즉시 1회 실행
+
+트리아지: ASAN 심볼 + backtrace 해시로 crash 군집/중복 제거 & CWE 매핑
+
+재현 명령 요약
+# (1) 1회 설정
+echo 'sk-...' > ~/.secrets/openai.key && chmod 600 ~/.secrets/openai.key
+mkdir -p ~/.config/ragfuzz
+# ~/.config/ragfuzz/config.toml 에 LLM 설정 저장
+
+# (2) LLM 생성
+python3 tools/rag_seedgen.py --bin ./targets/json/json_asan \
+  --config ~/.config/ragfuzz/config.toml -n 40
+cat corpus/dict/json.dict corpus/dict/auto.dict | sort -u > corpus/dict/combined.dict
+mkdir -p corpus/seed_all \
+  && rsync -a corpus/json_seeds/ corpus/seed_all/ \
+  && rsync -a corpus/generated/  corpus/seed_all/
+
+# (3) 실행
+export PYTHONPATH="$PWD"
+export AFL_PYTHON_MODULE=mutators.json_adapt
+afl-fuzz -i corpus/seed_all -o out/run1 \
+  -x corpus/dict/combined.dict -m none -t 200 -- \
+  ./targets/json/json_asan
+
+# (옵션) 사이드카
+export AFL_OUT_DIR=out/run1
+python3 tools/phase_ctl.py --out out/run1 --window 180 --k 3

@@ -1,0 +1,1 @@
+{"$schema": "htt-schema.org/draft-07/schema#", "strings": ["al", "string"], "complex": {"level1": {"level2": {"level3": {"level4": "deep"}}}} }

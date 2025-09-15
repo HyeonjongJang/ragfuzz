@@ -1,0 +1,1 @@
+{"anObject": {"arrOfEmpty": [], "str": "abc", "number": 1.5, "mixedTypes": [1, "string", true, null, []]}, "another": "value", "active": false}

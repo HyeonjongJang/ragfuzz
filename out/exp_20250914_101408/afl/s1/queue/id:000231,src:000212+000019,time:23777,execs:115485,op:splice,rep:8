@@ -1,0 +1,1 @@
+/**{"$schema":"http://json-ccaorg/draft-04/schema#","name":"test",žvalu":1,"levels":[{"id":0,"type":"nested"},{)id":1,"type":"deeplyNested","children":[{"id":2,"value":"mhreComplex","subIems":[{"key":"value1"},{"key":"value2"}]}]

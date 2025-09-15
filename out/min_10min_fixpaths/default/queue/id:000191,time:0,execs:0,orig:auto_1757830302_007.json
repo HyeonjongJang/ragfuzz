@@ -1,0 +1,1 @@
+{"$schema": "http://json-schema.org/draft-07/schema#", "advanced": {"data": [{"name": "John", "age": 30}, {"name": "Jane", "age": 25}]}, "counter": 0 }
