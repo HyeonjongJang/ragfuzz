@@ -1,87 +1,70 @@
-# RAG-Guided Adaptive Fuzzing (AFL++) — Runbook / README
+# RAG-Guided AFL++ JSON 퍼징 — 실행 가이드
 
-This README is a **step-by-step execution guide** to reproduce the setup and experiments for our *RAG-guided, curriculum + EMA-scheduler adaptive fuzzing* with AFL++ and a JSON target.
+_최종 업데이트: 2025-09-15 (KST)_
 
-It is written to be **copy–paste runnable** on a fresh Ubuntu/WSL machine.
+레포의 **현재 폴더/파일 구조**와 최신 적응 변이기 스택(EMA 스케줄러 + A/B/C 커리큘럼 + plateau 사이드카(선택) + LLM 시드/사전)을 기준으로 재현 가능한 실행 가이드입니다.
 
----
+## 레포 구조(핵심 경로)
 
-## 0) Requirements
-
-- **OS**: Ubuntu 22.04 (bare metal / VM / WSL2)
-- **User**: normal user (no root needed for most steps)
-- **Network**: outbound access if you will use the LLM seed/dict generator
-- **CPU**: the more cores, the better (multi-core fuzzing)
-
-### System packages
-
-```bash
-sudo apt-get update
-sudo apt-get install -y git build-essential clang lld cmake python3-pip python3-venv \
-                        jq rsync pkg-config
-```
-
-> macOS: `brew install llvm cmake jq rsync` works similarly.
-
----
-
-## 1) Get the repo & check the tree
-
-```bash
-cd ~
-git clone <YOUR-RAGFUZZ-REPO-URL> ragfuzz
-cd ~/ragfuzz
-```
-
-Expected structure (key files only):
 ```
 ragfuzz/
-  mutators/
-    __init__.py
-    json_adapt.py      # Adaptive mutator (EMA + curriculum phases A/B/C)
-    json_ops.py
-    sched_ema.py
-  tools/
-    rag_seedgen.py     # LLM/RAG seed & dict generator
-    phase_ctl.py       # Sidecar for plateau detection
-    collect.py         # Parse AFL++ plot_data -> CSV
   corpus/
-    json_seeds/        # Initial seeds (2–3+ JSON examples)
-    dict/
-      json.dict        # Base dictionary
+  engine/
+  mutators/
+  out/
+  rag/                 # (있을 경우)
+  reports/
+  scripts/
   targets/
-    json/
-      json_asan        # Target binary (ASAN). If missing, see 2-4.
+  tools/
+  triage/
+  README.md
 ```
 
----
+- `mutators/` — 적응 변이기와 연산자들 (`json_adapt.py`, `json_ops.py`, `sched_ema.py`, 실험용 `softmax_mutator.py`)
+- `tools/` — 유틸(LLM 시드/사전 `rag_seedgen.py`, plateau 사이드카 `phase_ctl.py`, 통계 수집 `collect.py`)
+- `targets/json/json_asan` — JSON 타깃 바이너리(ASAN). 없으면 **2‑4 타깃 빌드** 참고
+- `corpus/` — 초기 시드 `json_seeds/`, 사전 `dict/json.dict`, 실행 중 생성물 `generated/`, `seed_all/`
+- `scripts/` — 원커맨드 스크립트가 있다면 활용
+- `triage/`, `reports/` — (선택) 사후 분석 산출물
 
-## 2) Python env & AFL++
+> 위 구조와 일부 명령은 레포의 README에도 기재되어 있습니다.
 
-### 2-1) Create a Python env (conda or venv)
+## 0) 요구 사항
 
-**Conda (recommended):**
+- **OS**: Ubuntu 22.04 / WSL2
+- **Python**: 3.11 권장 (conda/venv)
+- **AFL++**: 소스 빌드 후 `PATH` 등록
+- (선택) OpenAI 호환 키(LLM 시드/사전)
+
+시스템 패키지:
+```bash
+sudo apt-get update
+sudo apt-get install -y git build-essential clang lld cmake python3-pip python3-venv jq rsync pkg-config
+```
+
+## 1) 파이썬 환경 & AFL++
+
+### 1‑1) 파이썬 환경
+Conda:
 ```bash
 conda create -n ragfuzz python=3.11 -y
 conda activate ragfuzz
 ```
-
-**OR venv:**
+또는 venv:
 ```bash
 python3 -m venv ~/.venvs/ragfuzz
 source ~/.venvs/ragfuzz/bin/activate
-python -V  # 3.11.x recommended
+python -V
+pip install --upgrade pip
 ```
 
-### 2-2) Python packages
-
+패키지:
 ```bash
-pip install --upgrade pip
 pip install "openai>=1.40.0" tomli tomlkit
 ```
 
-### 2-3) AFL++
-
+### 1‑2) AFL++
 ```bash
 cd ~
 git clone https://github.com/AFLplusplus/AFLplusplus.git
@@ -89,23 +72,16 @@ cd AFLplusplus
 make distrib -j$(nproc)
 echo 'export PATH="$HOME/AFLplusplus:$PATH"' >> ~/.bashrc
 source ~/.bashrc
-which afl-fuzz   # e.g., /home/USER/AFLplusplus/afl-fuzz
+which afl-fuzz
 ```
 
-### 2-4) Build target (only if missing)
+### 1‑3) 타깃 빌드(없을 때)
+```bash
+cd ~/ragfuzz/targets/json
+clang -O2 -g -fsanitize=address -fno-omit-frame-pointer -o json_asan json_target.c
+```
 
-If your repo already contains `targets/json/json_asan`, **skip** this section. Otherwise, compile your JSON target with ASAN and persistent mode as appropriate for your project.
-
-> Example (pseudo):
-> ```bash
-> cd ~/ragfuzz/targets/json
-> clang -O2 -g -fsanitize=address -fno-omit-frame-pointer \
->       -o json_asan json_target.c
-> ```
-
----
-
-## 3) Import the mutator (smoke test)
+## 2) 스모크 테스트: 변이기 임포트 + 10초 퍼징
 
 ```bash
 cd ~/ragfuzz
@@ -114,271 +90,117 @@ export PYTHONPATH="$PWD"
 python - <<'PY'
 import importlib
 m = importlib.import_module('mutators.json_adapt')
-buf = bytearray(b'{"a":1}')
+buf = bytearray(b'a')
 out = m.fuzz(buf, b'', 1024)
 print(type(out), len(out))
 PY
-```
-You should see something like `<class 'bytearray'> 6` and **no errors**.
 
----
-
-## 4) LLM configuration (optional but recommended)
-
-You can run without LLM. However, enabling it boosts initial coverage by injecting smarter seeds & dictionary tokens.
-
-### 4-1) Save your OpenAI key
-
-```bash
-mkdir -p ~/.secrets
-printf 'sk-YOUR-REAL-API-KEY\n' > ~/.secrets/openai.key
-chmod 700 ~/.secrets
-chmod 600 ~/.secrets/openai.key
+export AFL_PYTHON_MODULE=mutators.json_adapt
+env -u LD_LIBRARY_PATH AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1   afl-fuzz -i corpus/json_seeds -o out/smoke   -x corpus/dict/json.dict -m none -t 200 -V 10 --   ./targets/json/json_asan
 ```
 
-### 4-2) Create config TOML
+## 3) (선택) LLM 시드/사전 생성 + 병합
 
+설정:
 ```bash
-mkdir -p ~/.config/ragfuzz
+mkdir -p ~/.secrets ~/.config/ragfuzz
+printf 'sk-실제키\n' > ~/.secrets/openai.key
+chmod 700 ~/.secrets; chmod 600 ~/.secrets/openai.key
 cat > ~/.config/ragfuzz/config.toml <<'TOML'
 [llm]
 provider    = "openai"
 model       = "gpt-4o-mini"
 temperature = 1.1
-# base_url = "https://api.openai.com/v1"  # set this if you use a proxy/self-hosted compatible endpoint
-api_key_file = "/home/USER/.secrets/openai.key"  # replace USER with your username
+api_key_file = "/home/USER/.secrets/openai.key"  # USER 교체
 TOML
 ```
 
-> Replace `/home/USER` with your **actual** user home (e.g., `/home/aims`).
-
-### 4-3) Key test
-
+생성 & 병합:
 ```bash
-python - <<'PY'
-from openai import OpenAI
-key = open('/home/USER/.secrets/openai.key','r',encoding='utf-8').read().strip()  # replace USER
-cli = OpenAI(api_key=key)
-r = cli.responses.create(model="gpt-4o-mini", input="ping")
-print("OK:", bool(getattr(r, "output_text", None)))
-PY
-```
+python3 tools/rag_seedgen.py   --bin ./targets/json/json_asan   --config ~/.config/ragfuzz/config.toml   -n 20
 
-You should see `OK: True`.
-
----
-
-## 5) Generate LLM seeds & merge dictionary (optional)
-
-> If you skip this, keep using the stock `corpus/json_seeds` and `corpus/dict/json.dict`.
-
-```bash
-cd ~/ragfuzz
-
-# Generate N candidates; filters: JSON-parse + mini-harness run
-python3 tools/rag_seedgen.py \
-  --bin ./targets/json/json_asan \
-  --config ~/.config/ragfuzz/config.toml \
-  -n 20
-
-# Merge dictionaries
 cat corpus/dict/json.dict corpus/dict/auto.dict | sort -u > corpus/dict/combined.dict
-
-# Combine seeds (stock + generated)
 mkdir -p corpus/seed_all
 rsync -a corpus/json_seeds/ corpus/seed_all/
 rsync -a corpus/generated/  corpus/seed_all/
 ```
 
-**Verify:**
-- New files in `corpus/generated/`
-- `corpus/dict/auto.dict` created/updated
-- `corpus/dict/combined.dict` exists and is non-empty
-
----
-
-## 6) Quick smoke fuzz (10 seconds)
+## 4) 적응 실행(EMA + 커리큘럼)
 
 ```bash
-cd ~/ragfuzz
-export PYTHONPATH="$PWD"
-export AFL_PYTHON_MODULE=mutators.json_adapt
-find mutators -name '__pycache__' -type d -exec rm -rf {} +
-
-env -u LD_LIBRARY_PATH AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 \
-  afl-fuzz -i corpus/json_seeds -o out/adapt_smoke \
-  -x corpus/dict/json.dict -m none -t 200 -V 10 -- \
-  ./targets/json/json_asan
-```
-
-Expected: total execs increase, corpus grows, exit cleanly with `fastresume.bin`. **No segfaults**.
-
----
-
-## 7) LLM seeds + adaptive scheduler run (10 minutes)
-
-```bash
-cd ~/ragfuzz
 export PYTHONPATH="$PWD"
 export AFL_PYTHON_MODULE=mutators.json_adapt
 
-env -u LD_LIBRARY_PATH AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 \
-  afl-fuzz -i corpus/seed_all -o out/llm_10min \
-  -x corpus/dict/combined.dict -m none -t 200 -V 600 -- \
-  ./targets/json/json_asan
+env -u LD_LIBRARY_PATH AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1   afl-fuzz -i corpus/seed_all -o out/llm_10min   -x corpus/dict/combined.dict -m none -t 200 -V 600 --   ./targets/json/json_asan
 ```
 
-Watch for:
-- Dictionary stage hits (not all zeros)
-- `edges_found`, `paths_total` should climb faster than baseline
+**페이즈 규칙(현행):**  
+- **A**: 기본 유효성 (예: `op_nop`, `op_flip_bool`)  
+- **B**: 경계값 주입 활성화 (예: `op_num_boundary`)  
+- **C**: 모든 연산자 사용  
+- **전이**: A→B는 파싱률 ≥ 0.90, B→C는 plateau 시; C에서는 plateau 시 EMA 리셋
 
----
+연산자 **이름 기반 매핑**으로 안전하게 동작하며, 존재하지 않는 연산자는 자동 무시됩니다.
 
-## 8) (Optional) Sidecar plateau detection → Phase B→C
+## 5) (선택) Plateau 사이드카 → B→C
 
-**Terminal A (sidecar):**
+터미널 A:
 ```bash
-cd ~/ragfuzz
 python3 tools/phase_ctl.py --out out/adapt_llm_smoke --window 180 --k 3
-# Writes out/adapt_llm_smoke/default/phase_ctl.json
 ```
 
-**Terminal B (fuzzer, must set AFL_OUT_DIR):**
+터미널 B:
 ```bash
-cd ~/ragfuzz
+export AFL_OUT_DIR=out/adapt_llm_smoke
 export PYTHONPATH="$PWD"
 export AFL_PYTHON_MODULE=mutators.json_adapt
-export AFL_OUT_DIR=out/adapt_llm_smoke
-
-env -u LD_LIBRARY_PATH AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 \
-  afl-fuzz -i corpus/seed_all -o out/adapt_llm_smoke \
-  -x corpus/dict/combined.dict -m none -t 200 -V 600 -- \
-  ./targets/json/json_asan
+env -u LD_LIBRARY_PATH AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1   afl-fuzz -i corpus/seed_all -o out/adapt_llm_smoke   -x corpus/dict/combined.dict -m none -t 200 -V 600 --   ./targets/json/json_asan
 ```
 
-**Manual toggle (quick test, no sidecar):**
+수동 토글:
 ```bash
 echo '{"plateau": true}' > out/adapt_llm_smoke/default/phase_ctl.json
 ```
 
-The mutator periodically reads this file; when plateau is true during phase B, it transitions to C and resets EMA scores.
+## 6) 베이스라인 vs LLM/적응 비교
 
----
-
-## 9) Baseline vs LLM comparison
-
-**A) Baseline (no LLM):**
+**베이스라인(변이기X):**
 ```bash
 unset AFL_PYTHON_MODULE
-env -u LD_LIBRARY_PATH AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 \
-  afl-fuzz -i corpus/json_seeds -o out/base_10min \
-  -x corpus/dict/json.dict -m none -t 200 -V 600 -- \
-  ./targets/json/json_asan
+env -u LD_LIBRARY_PATH AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1   afl-fuzz -i corpus/json_seeds -o out/base_10min   -x corpus/dict/json.dict -m none -t 200 -V 600 --   ./targets/json/json_asan
 ```
 
-**B) LLM + adaptive (current):**
+**LLM + 적응:**
 ```bash
 export PYTHONPATH="$PWD"
 export AFL_PYTHON_MODULE=mutators.json_adapt
-env -u LD_LIBRARY_PATH AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 \
-  afl-fuzz -i corpus/seed_all -o out/llm_10min \
-  -x corpus/dict/combined.dict -m none -t 200 -V 600 -- \
-  ./targets/json/json_asan
+env -u LD_LIBRARY_PATH AFL_SKIP_CPUFREQ=1 AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1   afl-fuzz -i corpus/seed_all -o out/llm_10min   -x corpus/dict/combined.dict -m none -t 200 -V 600 --   ./targets/json/json_asan
 ```
 
-**Collect & compare:**
+통계 수집(`tools/collect.py`가 있을 때):
 ```bash
 python3 tools/collect.py out/base_10min stats_base.csv
 python3 tools/collect.py out/llm_10min  stats_llm.csv
 ```
-Key metrics: `edges_found`, `paths_total`, early growth rate, dictionary hits, time-to-first-crash (if any).
 
----
+핵심 지표: `edges_found`, `paths_total`, 초기 성장률, dict 히트, TTFC(있다면).
 
-## 10) Corpus curation
+## 7) 코퍼스 최소화 & 크래시 트리아지
 
 ```bash
-# Minimize corpus
 afl-cmin -i out/llm_10min/default/queue -o corpus/min -- ./targets/json/json_asan
-
-# Minimize a specific interesting/crash case
-afl-tmin -i crashes/id:XXXXX -o minimized -- ./targets/json/json_asan
+afl-tmin -i crashes/id:XXXXXX -o minimized -- ./targets/json/json_asan
 ```
 
-(Optionally, add coverage-profile hashing to dedupe beyond file hashes.)
+## 8) 튜닝 팁
 
----
+- **EMA**: 탐색↑ `eps≈0.05–0.10`, 수렴↑ `lam≈0.1–0.2` (낮출수록 exploitation)
+- **A→B 임계**: 타깃이 유효 JSON을 많이 파싱하면 0.85로 낮춰 전이 가속
+- **Plateau 창**: 느린 타깃은 `window↑` 또는 `k↓`
+- **LLM**: 초기 `-n 100–200`으로 커버리지 가속, `auto.dict` 성장을 확인
 
-## 11) Multi-core fuzzing
+## 9) 비고
 
-```bash
-# Master
-afl-fuzz -i corpus/seed_all -o out/cluster \
-  -x corpus/dict/combined.dict -M f0 -m none -t 200 -- ./targets/json/json_asan
-
-# Slave 1
-afl-fuzz -i corpus/seed_all -o out/cluster \
-  -x corpus/dict/combined.dict -S s1 -m none -t 200 -- ./targets/json/json_asan
-
-# Add more slaves (s2, s3, ...)
-```
-
-> If you want adaptive mutator on all workers: set `export AFL_PYTHON_MODULE=mutators.json_adapt` for each process.
-
----
-
-## 12) Troubleshooting
-
-- **`ModuleNotFoundError: mutators.json_adapt`**
-  - `export PYTHONPATH="$PWD"`?
-  - Does `mutators/__init__.py` exist? (`touch mutators/__init__.py`)
-
-- **Dictionary stage shows zeros**
-  - Verify `-x` path and that `combined.dict` is non-empty & readable.
-
-- **Segfaults**
-  - Mutator must **return `bytearray`** and respect `max_size`. Current code enforces this.
-
-- **`IndexError` in scheduler**
-  - Caused by operator index set mismatch. Current mutator sanitizes `allowed` via operator-name mapping.
-
-- **OpenAI 401**
-  - Check `~/.secrets/openai.key` content/permissions (600)
-  - Check `~/.config/ragfuzz/config.toml` `api_key_file` path (username!)
-  - Ensure `openai>=1.40.0`
-
-- **Sidecar seems ignored**
-  - `export AFL_OUT_DIR=<same as -o>` before running afl-fuzz
-  - Check `out/.../default/phase_ctl.json` timestamp & content
-
-- **Slow fuzzing**
-  - Keep `-m none`
-  - Use `env -u LD_LIBRARY_PATH` to avoid LD issues
-  - Run multi-core (`-M/-S` mode)
-
-- **`core_pattern` warning**
-  - For experiments, we already set `AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1`
-
----
-
-## 13) Resume / Restart
-
-- Reusing the same `-o` directory will auto-resume from `fastresume.bin`.
-- For a clean run, switch to a new `-o` directory or delete the old one.
-
----
-
-## 14) Advanced tuning
-
-- **Long C-phase runs** for crash hunting; triage & dedupe by backtrace hash.
-- **Periodic RAG loop**: run `tools/rag_seedgen.py` every N minutes; merge to `combined.dict`.
-- **EMA hyperparams**:
-  - More exploration: `eps = 0.05~0.1`, `tau = 0.6~0.8`
-  - Tighter exploitation: decrease `eps`, tweak `lam` (0.1–0.3 typical)
-
----
-
-## Acknowledgements
-
-- AFL++: https://github.com/AFLplusplus/AFLplusplus
-- Thanks to the AFL++ maintainers & fuzzing community.
+- `mutators/softmax_mutator.py`는 **실험용** 대체 변이기이며, 기본 경로는 `mutators/json_adapt.py`.
+- `mutators/json_ops.py`에 연산자를 추가하면 이름 기반으로 즉시 반영됩니다.
+- `scripts/run_all.sh`가 있다면 A/B/C 시나리오를 원커맨드로 실행할 수 있습니다(없으면 위 명령 사용).
